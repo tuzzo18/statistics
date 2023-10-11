@@ -6,7 +6,8 @@
     <title>HW 1</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -39,6 +40,12 @@
             text-align: center;
         }
 
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         .solution h2 {
             margin-bottom: 10px;
         }
@@ -66,30 +73,140 @@
             </p>
         </div>
 
-        <a href="index.html">&larr; home</a>
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
 
         <h1 style="text-align: center;">Homework 1</h1>
 
         <div class="solution">
             <h2>Theory</h2>
             <ul>
-                <li>What is Statistics and its relationship with other disciplines. Difference between Descriptive and Inferential Statistics.</li>
-                <p>...</p>
-                <li>Describe the concepts of Population, Sample Attribute, Variable, Level of measurement and Dataset.</li>
-                <p>...</p>
-                <li>Briefly describe the main sampling methods.</li>
-                <p>...</p>
-                <li>Briefly describe the main experiment designs.</li>
-                <p>...</p>
+                <li><strong>What is Statistics and its relationship with other disciplines. Difference between Descriptive and Inferential Statistics.</strong></li>
+                <p>
+                    Statistics is the science concerned with developing and studying methods for collecting, analyzing, interpreting and presenting empirical data [1].
+                    Statistics holds a central position in almost every field, including industry, commerce, trade, physics, chemistry, economics, mathematics, biology, botany, psychology, astronomy, etc., so the applications of statistics are very wide [2].
+                    The difference between Descriptive and Inferential Statistics is essentially that descriptive statistics state facts and proven outcomes from a population,
+                    whereas inferential statistics analyze samplings to make predictions about larger populations [3].
+                </p>
+                <li><strong>Describe the concepts of Population, Sample, Attribute, Variable, Level of measurement and Dataset.</strong></li>
+                <p>
+                    A population is the collection of all items of interest to our study. A sample is a subset of the population.
+                    A variable refers to a grouping of several characteristics. Attributes are those characteristics.
+                    A variable's attributes determine its level of measurement. There are four possible levels of measurement: nominal, ordinal, interval, and ratio [4].
+                    A Dataset is a set or collection of data. This set is normally presented in a tabular pattern. Every column describes a particular variable and each row corresponds to a given member of the dataset [5].
+                </p>
+                <li><strong>Briefly describe the main sampling methods.</strong></li>
+                <p>There are two primary types of sampling methods [6]:</p>
+                <p>- <u>Probability sampling</u>: simple random sample, systematic sample, stratified sample, clustre sample.</p>
+                <p>- <u>Non-probability sampling</u>: convenience sample, purposive sample, snowball sample, quota sample.</p>
+
+                    
+                
+                <li><strong>Briefly describe the main experiment designs.</strong></li>
+                <p>
+                    Experimental design is the process of planning a study to meet specified objectives.
+                    Planning an experiment properly is very important in order to ensure that the right type of data and a sufficient sample size
+                    and power are available to answer the research questions of interest as clearly and efficiently as possible.
+                    Three of the more widely used experimental designs are the completely randomized design, the randomized block design, and the factorial design [7].
+                </p>
               </ul> 
 
             <h2>Applications</h2>
             <ul>
-                <li>Write a program in C# or VB.NET that creates a window containing a single line, point, circle, rectangle.</li>
+                <li><strong>Write a program in C# or VB.NET that creates a window containing a single line, point, circle, rectangle.</strong></li>
                 <p>...</p>
-                <li>Write a program in JavaScript or TypeScript that creates a window containing a single line, point, circle, rectangle.</li>
-                <p>...</p>
+                <li><strong>Write a program in JavaScript or TypeScript that creates a window containing a single line, point, circle, rectangle.</strong></li>
+                <p style="text-align: center;">JavaScript code:</p>
+                
+                    <pre>
+                        <code class="language-javascript">
+                                
+                                function drawLine() {
+                                    var canvas = document.getElementById('line');
+                                    var context = canvas.getContext('2d');
+                                    if (canvas.getContext) {
+                                        var X = canvas.width / 3;
+                                        var Y = canvas.height / 2;
+                                        context.beginPath();
+                                        context.moveTo(X, Y);
+                                        context.lineTo(X+50, Y);
+                                        context.strokeStyle = 'black';
+                                        context.stroke(); 
+                                        context.lineWidth = 5; 
+                                    }
+                                }
+
+                                function drawPoint() {
+                                    var canvas = document.getElementById('point');
+                                    var context = canvas.getContext('2d');
+                                    if (canvas.getContext) {
+                                        var X = canvas.width / 2;
+                                        var Y = canvas.height / 2;
+                                        var R = 5;
+                                        context.beginPath();
+                                        context.arc(X, Y, R, 0, 2 * Math.PI);
+                                        context.lineWidth = 3;
+                                        context.fillStyle = 'black'; 
+                                        context.strokeStyle = 'black';  
+                                        context.fill(); 
+                                        context.stroke();
+                                    }
+                                }
+                            
+                                function drawCircle() {
+                                    var canvas = document.getElementById('circle');
+                                    var context = canvas.getContext('2d');
+                                    if (canvas.getContext) {
+                                        var X = canvas.width / 2;
+                                        var Y = canvas.height / 2;
+                                        var R = 30;
+                                        context.beginPath();
+                                        context.arc(X, Y, R, 0, 2 * Math.PI);
+                                        context.lineWidth = 2;
+                                        context.fillStyle = "red";
+                                        context.fill();
+                                        context.strokeStyle = "black";
+                                        context.stroke();
+                                    }
+                                }
+                            
+                                function drawRectangle() {
+                                    var canvas = document.getElementById('rectangle');
+                                    var context = canvas.getContext('2d');
+                                    if (canvas.getContext) {
+                                        var X = canvas.width / 4;
+                                        var Y = canvas.height / 3;
+                                        context.beginPath();
+                                        context.rect(X, Y, 80, 50);
+                                        context.fillStyle = "blue";
+                                        context.fill();
+                                        context.strokeStyle = "black";
+                                        context.stroke();
+                                    }
+                                }
+                            
+                                drawLine();
+                                drawPoint();
+                                drawCircle();
+                                drawRectangle();
+                            
+                        </code>
+                    </pre>
+                
+                <p style="text-align: center;">Output:</p>
+                <img src="lpcr.JPG" alt="line-point-circle-rectangle" style="width: 50%;height: 50%; display: block; margin-left: auto; margin-right: auto;">
             </ul>
+
+            <h4>Sources</h4>
+            <p>[1] https://www.stat.uci.edu/what-is-statistics/</p>
+            <p>[2] https://www.emathzone.com/tutorials/basic-statistics/importance-of-statistics-in-different-fields.html</p>
+            <p>[3] https://onlinedegrees.bradley.edu/blog/whats-the-difference-between-descriptive-and-inferential-statistics/</p>
+            <p>[4] https://pressbooks.bccampus.ca/researchmethods/chapter/complexities-in-measurement/</p>
+            <p>[5] https://byjus.com/maths/data-sets/</p>
+            <p>[6] https://www.scribbr.com/methodology/sampling-methods/</p>
+            <p>[7] https://www.britannica.com/science/statistics/Experimental-design</p>
+
         </div>
 
         <div class="footer">
