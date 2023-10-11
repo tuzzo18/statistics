@@ -115,87 +115,218 @@
             <h2>Applications</h2>
             <ul>
                 <li><strong>Write a program in C# or VB.NET that creates a window containing a single line, point, circle, rectangle.</strong></li>
-                <p>...</p>
+                <p style="text-align: center;">C# code:</p>
+
+<pre>
+    <code>
+// To draw a line
+namespace WinFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = this.panel1.CreateGraphics();
+
+            // Create pen.
+            Pen blackPen = new Pen(Color.Black, 3);
+
+            // Create points that define line.
+            PointF point1 = new PointF(100.0F, 100.0F);
+            PointF point2 = new PointF(500.0F, 100.0F);
+
+            // Draw line to screen.
+            g.DrawLine(blackPen, point1, point2);
+
+        }
+    }
+}
+    </code>
+</pre>
+
+<p>Output:</p>
+<img src="line.JPG" alt="line" style="width: 30%;height: 30%;">
+
+<pre>
+    <code>
+// To draw a point
+namespace WinFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = this.panel1.CreateGraphics();
+
+            SolidBrush myBrush = new SolidBrush(Color.Black);
+            
+            Pen myPen = new Pen(Color.Black, 1);
+            g.FillEllipse(myBrush,180, 40, 20, 20);
+            g.DrawEllipse(myPen, 180, 40, 20, 20);
+        }
+    }
+}
+    </code>
+</pre>
+
+<p>Output:</p>
+<img src="point.JPG" alt="point" style="width: 30%;height: 30%;">
+
+<pre>
+    <code>
+// To draw a circle
+namespace WinFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = this.panel1.CreateGraphics();
+            Pen p = new Pen(Color.Red);
+            g.DrawEllipse(p,70,60,170,170);
+
+        }
+    }
+}
+    </code>
+</pre>
+
+<p>Output:</p>
+<img src="circle.JPG" alt="circle" style="width: 30%;height: 30%;">
+
+<pre>
+    <code>
+// To draw a rectangle
+namespace WinFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = this.panel1.CreateGraphics();
+            
+            // Create pen
+            Pen blackPen = new Pen(Color.Black);
+            SolidBrush blueBrush = new SolidBrush(Color.Blue);
+            // Create rectangle
+            Rectangle rect = new Rectangle(70, 60, 200, 140);
+            g.FillRectangle(blueBrush, rect);
+            // Draw rectangle to screen
+            g.DrawRectangle(blackPen, rect);
+
+        }
+    }
+}
+    </code>
+</pre>
+
+<p>Output:</p>
+<img src="rectangle.JPG" alt="rectangle" style="width: 30%;height: 30%;">
+<br>
+<br>
+
                 <li><strong>Write a program in JavaScript or TypeScript that creates a window containing a single line, point, circle, rectangle.</strong></li>
                 <p style="text-align: center;">JavaScript code:</p>
-                
-                    <pre>
-                        <code class="language-javascript">
-                                
-                                function drawLine() {
-                                    var canvas = document.getElementById('line');
-                                    var context = canvas.getContext('2d');
-                                    if (canvas.getContext) {
-                                        var X = canvas.width / 3;
-                                        var Y = canvas.height / 2;
-                                        context.beginPath();
-                                        context.moveTo(X, Y);
-                                        context.lineTo(X+50, Y);
-                                        context.strokeStyle = 'black';
-                                        context.stroke(); 
-                                        context.lineWidth = 5; 
-                                    }
-                                }
 
-                                function drawPoint() {
-                                    var canvas = document.getElementById('point');
-                                    var context = canvas.getContext('2d');
-                                    if (canvas.getContext) {
-                                        var X = canvas.width / 2;
-                                        var Y = canvas.height / 2;
-                                        var R = 5;
-                                        context.beginPath();
-                                        context.arc(X, Y, R, 0, 2 * Math.PI);
-                                        context.lineWidth = 3;
-                                        context.fillStyle = 'black'; 
-                                        context.strokeStyle = 'black';  
-                                        context.fill(); 
-                                        context.stroke();
-                                    }
-                                }
-                            
-                                function drawCircle() {
-                                    var canvas = document.getElementById('circle');
-                                    var context = canvas.getContext('2d');
-                                    if (canvas.getContext) {
-                                        var X = canvas.width / 2;
-                                        var Y = canvas.height / 2;
-                                        var R = 30;
-                                        context.beginPath();
-                                        context.arc(X, Y, R, 0, 2 * Math.PI);
-                                        context.lineWidth = 2;
-                                        context.fillStyle = "red";
-                                        context.fill();
-                                        context.strokeStyle = "black";
-                                        context.stroke();
-                                    }
-                                }
-                            
-                                function drawRectangle() {
-                                    var canvas = document.getElementById('rectangle');
-                                    var context = canvas.getContext('2d');
-                                    if (canvas.getContext) {
-                                        var X = canvas.width / 4;
-                                        var Y = canvas.height / 3;
-                                        context.beginPath();
-                                        context.rect(X, Y, 80, 50);
-                                        context.fillStyle = "blue";
-                                        context.fill();
-                                        context.strokeStyle = "black";
-                                        context.stroke();
-                                    }
-                                }
-                            
-                                drawLine();
-                                drawPoint();
-                                drawCircle();
-                                drawRectangle();
-                            
+                <div>
+                    <pre>
+                        <code> 
+          
+function drawLine() {
+    var canvas = document.getElementById('line');
+    var context = canvas.getContext('2d');
+    if (canvas.getContext) {
+        var X = canvas.width / 3;
+        var Y = canvas.height / 2;
+        context.beginPath();
+        context.moveTo(X, Y);
+        context.lineTo(X+50, Y);
+        context.strokeStyle = 'black';
+        context.stroke(); 
+        context.lineWidth = 5; 
+    }
+}
+
+function drawPoint() {
+    var canvas = document.getElementById('point');
+    var context = canvas.getContext('2d');
+    if (canvas.getContext) {
+        var X = canvas.width / 2;
+        var Y = canvas.height / 2;
+        var R = 5;
+        context.beginPath();
+        context.arc(X, Y, R, 0, 2 * Math.PI);
+        context.lineWidth = 3;
+        context.fillStyle = 'black'; 
+        context.strokeStyle = 'black';  
+        context.fill(); 
+        context.stroke();
+    }
+}
+
+function drawCircle() {
+    var canvas = document.getElementById('circle');
+    var context = canvas.getContext('2d');
+    if (canvas.getContext) {
+        var X = canvas.width / 2;
+        var Y = canvas.height / 2;
+        var R = 30;
+        context.beginPath();
+        context.arc(X, Y, R, 0, 2 * Math.PI);
+        context.lineWidth = 2;
+        context.fillStyle = "red";
+        context.fill();
+        context.strokeStyle = "black";
+        context.stroke();
+    }
+}
+
+function drawRectangle() {
+    var canvas = document.getElementById('rectangle');
+    var context = canvas.getContext('2d');
+    if (canvas.getContext) {
+        var X = canvas.width / 4;
+        var Y = canvas.height / 3;
+        context.beginPath();
+        context.rect(X, Y, 80, 50);
+        context.fillStyle = "blue";
+        context.fill();
+        context.strokeStyle = "black";
+        context.stroke();
+    }
+}
+
+drawLine();
+drawPoint();
+drawCircle();
+drawRectangle();       
                         </code>
                     </pre>
+                </div> 
                 
-                <p style="text-align: center;">Output:</p>
-                <img src="lpcr.JPG" alt="line-point-circle-rectangle" style="width: 50%;height: 50%; display: block; margin-left: auto; margin-right: auto;">
+                
+                <p>Output:</p>
+                <img src="lpcr.JPG" alt="line-point-circle-rectangle" style="width: 50%;height: 50%;">
             </ul>
 
             <h4>Sources</h4>
