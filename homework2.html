@@ -340,7 +340,254 @@ class Program
                     <br>
                     Note in a very concise way your finding in your Js Cheatsheet, and, in case a corresponding Js object does not exists, create a simple equivalent class with all necessary corresponding methods. 
             </div>
+            <h4>C# data structures</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+using System;
+using System.Collections.Generic;
+using System.Collections;
+
+namespace data_structures
+{
+    class Program
+    {
+
+        static void Main()
+        {
+            // **************************************************
+            // ARRAY
             
+            // Initialization
+            int[] myArray = new int[5];
+
+            // loop
+            foreach (int i in myArray)
+            {
+                Console.WriteLine(i);
+            }
+
+            // add elements
+            myArray[0] = 1;
+            myArray[1] = 2;
+            myArray[2] = 3;
+
+            // remove elements 
+            int indexElementToRemove = 1;
+            int[] newArray = new int[myArray.Length-1];
+            for (int i = 0; i <  newArray.Length; i++)
+            {
+                if (i == indexElementToRemove) continue;
+
+                newArray[i] = myArray[i];
+            }
+
+            // get elements
+            Console.WriteLine(myArray[0]);
+
+            // loop
+            foreach (int i in myArray)
+            {
+                Console.WriteLine(i);
+            }
+
+            // check existance
+            bool exist = myArray.Contains(3);
+            Console.WriteLine(exist);
+
+
+            // **************************************************
+            // DICTIONARY
+
+            // Initialization
+            Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+
+            // add elements
+            myDictionary.Add("Riccardo", 123);
+            myDictionary.Add("Francesco", 456);
+
+            // loop
+            foreach (KeyValuePair<string, int> entry in myDictionary)
+            {
+                Console.WriteLine("{0}: {1}", entry.Key, entry.Value);
+            }
+
+            // remove elements 
+            myDictionary.Remove("Riccardo");
+    
+            // check existance
+            myDictionary.ContainsKey("Riccardo");
+            myDictionary.ContainsValue(02);
+
+            // retrieve elements
+            Console.WriteLine(myDictionary["Francesco"]);
+
+
+            // **************************************************
+            // SORTED LIST (key/value pairs)
+
+            // initialization
+            SortedList mySL = new SortedList();
+
+            // add elements
+            mySL.Add("C", 9);
+            mySL.Add("B", 1);
+            mySL.Add("A", 4);
+
+            // loop (prints in the following order: A, B, C)
+            for (int i = 0; i < mySL.Count; i++)
+            {
+                Console.WriteLine("\t{0}:\t{1}", mySL.GetKey(i), mySL.GetByIndex(i));
+            }
+
+            // remove elements 
+            mySL.Remove("A");
+            mySL.Remove("B");
+
+            // check existance
+            bool e = mySL.ContainsKey("A");
+            Console.WriteLine(e);
+
+            // retrieve elements (prints the value of the key)
+            Console.WriteLine(mySL["C"]);
+
+
+            // **************************************************
+            // HASH SET
+
+            // initialization
+            HashSet<int> hs = new HashSet<int>();
+
+            // add elements
+            hs.Add(10);
+            hs.Add(25);
+            hs.Add(30);
+
+            // loop 
+            foreach (int i in hs)
+            {
+                Console.WriteLine(i);
+            }
+                
+            // remove elements 
+            hs.Remove(10);
+            hs.Remove(20);
+
+            // check existance
+            bool ex = hs.Contains(30);
+            Console.WriteLine(ex);
+
+
+            // **************************************************
+            // QUEUE
+
+            // initialization
+            Queue<int> queue = new Queue<int>();
+
+            // add elements
+            queue.Enqueue(50);
+            queue.Enqueue(40);
+            queue.Enqueue(30);
+
+            // loop 
+            foreach (int i in queue)
+            {
+                Console.WriteLine(i);
+            }
+
+            // remove elements from the head of the queue
+            queue.Dequeue();
+            queue.Dequeue();
+            foreach (int i in queue)
+            {
+                Console.WriteLine(i);
+            }
+
+            // check existance
+            bool x = queue.Contains(60);
+            Console.WriteLine(x);   
+
+            // Returns the element at the head of the queue
+            Console.WriteLine(queue.Peek());
+
+
+            // **************************************************
+            // STACK
+
+            // initialization
+            Stack<int> stack = new Stack<int>();
+
+            // add elements
+            stack.Push(15);
+            stack.Push(16);
+            stack.Push(17);
+
+            // loop: prints 17, 16, 15 (from top to down)
+            foreach (int i in stack)
+            {
+                Console.WriteLine(i);
+            }
+                
+            // remove elements from the top
+            stack.Pop();
+            stack.Pop();
+            foreach (int i in stack)
+            {
+                Console.WriteLine(i);
+            }
+
+            // check existance
+            bool y = stack.Contains(17);
+            Console.WriteLine(y);   
+
+            //retrieve element
+            Console.WriteLine(stack.Peek());
+
+
+            // **************************************************
+            // LINKED LIST
+
+            // initialization
+            LinkedList<int> ll = new LinkedList<int>();
+
+            // add elements
+            ll.AddLast(8);
+            ll.AddFirst(3);
+            ll.AddAfter(ll.Find(3), 0);
+            ll.AddBefore(ll.Find(3), 1);
+
+            // loop: prints 1,3,0,8
+            foreach (int i in ll)
+            {
+                Console.WriteLine(i);
+            }
+
+            // remove elements
+            ll.Remove(8);
+            ll.RemoveLast();
+            ll.RemoveFirst();
+            // prints 3
+            foreach (int i in ll)
+            {
+                Console.WriteLine(i);
+            }
+
+            // check existance
+            ll.Find(8);
+
+            // retrieve element
+            Console.WriteLine(ll.Find(3));
+        }
+    }
+}
+    </code>
+</pre>
+            </div>
+            <h4>JavaScript data structures</h4>
+            <div class="code_background">
+
+            </div>
+
             <div class="exercise_text">
                 <h4>Assignment 3</h4>
                 Generate N uniform random variates in [0,1) and determine the distribution into <b>class intervals</b> [i/k, (i+1)/k), i = 0,..., k-1.
