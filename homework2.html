@@ -321,6 +321,84 @@ class Program
 
             </div>
             <h4>JavaScript code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+function calculateAbsoluteFrequency(list) {
+    const frequency = {};
+    
+    list.forEach((value) => {
+        if (frequency[value] !== undefined) {
+        frequency[value]++;
+        } else {
+        frequency[value] = 1;
+        }
+    });
+    
+    return frequency;
+    }
+                    </code>
+                </pre>
+            </div>
+
+            <div class="code_background">
+                <pre>
+                    <code>
+function calculateRelativeFrequency(list) {
+    const absoluteFrequency = calculateAbsoluteFrequency(list);
+    const relativeFrequency = {};
+    
+    const totalElements = list.length;
+    
+    for (const value in absoluteFrequency) {
+        relativeFrequency[value] = absoluteFrequency[value] / totalElements;
+    }
+    
+    return relativeFrequency;
+}                          
+                    </code>
+                </pre>
+            </div>
+
+            <div class="code_background">
+                <pre>
+                    <code>
+function calculatePercentageFrequency(list) {
+    const relativeFrequency = calculateRelativeFrequency(list);
+    const percentageFrequency = {};
+    
+    for (const value in relativeFrequency) {
+        percentageFrequency[value] = relativeFrequency[value] * 100;
+    }
+    
+    return percentageFrequency;
+}                          
+                    </code>
+                </pre>
+            </div>
+
+            <div class="code_background">
+                <pre>
+                    <code>
+function calculateJointDistribution(list1, list2) {
+    const jointDistribution = {};
+    
+    for (let i = 0; i < list1.length; i++) {
+        const value1 = list1[i];
+        const value2 = list2[i];
+    
+        if (jointDistribution[`${value1}-${value2}`] !== undefined) {
+        jointDistribution[`${value1}-${value2}`]++;
+        } else {
+        jointDistribution[`${value1}-${value2}`] = 1;
+        }
+    }
+    
+    return jointDistribution;
+}
+                    </code>
+                </pre>
+            </div>
 
             
             <div class="exercise_text">
@@ -585,8 +663,339 @@ namespace data_structures
             </div>
             <h4>JavaScript data structures</h4>
             <div class="code_background">
+<p>Array:</p>
+<pre>
+    <code>
+const nums = [1, 2, 3];
 
+nums.push(6);
+nums.push(4, 9);
+
+nums.length;                     // 6
+nums[nums.length - 1];           // 9
+
+nums.slice(1, 3);                // [2, 3] (elem. index 1, elem. index 2)
+nums.map(n => n * 2);            // [2, 4, 6, 12, 8, 18]
+nums.filter(n => n % 2 === 0);   // [2, 6, 4]
+nums.reduce((a, n) => a + n, 0); // 25
+    </code>
+</pre>
             </div>
+            <div class="code_background">
+<p>Set:</p>
+<pre>
+    <code>
+const nums = new Set([1, 2, 3]);
+
+nums.add(4);
+nums.add(1);
+nums.add(5);
+nums.add(4);
+
+nums.size;                       // 5
+nums.has(4);                     // true
+
+nums.delete(4);
+nums.has(4);                     // false
+
+[...nums];                       // [1, 2, 3, 5]
+
+nums.clear();
+nums.size;   
+    </code>
+</pre>
+</div>
+<p>Dictionary:</p>
+<div class="code_background">
+    <pre>
+        <code>
+var dict = {};
+
+dict["FirstName"] = "Chris";
+dict["Age"] = 42;
+
+for(var key in dict) {
+    var value = dict[key];
+    // do something with "key" and "value" variables
+}
+
+var name = dict["FirstName"];
+        </code>
+    </pre>
+
+</div>
+            <p>The following classes were created in JavaScript:</p>
+            <div class="code_background">
+                <pre>
+                    <code>
+class Queue {
+    constructor() {
+        this.items = [];
+    }
+    
+    // Add an element to the queue
+    enqueue(element) {
+        this.items.push(element);
+    }
+    
+    // Remove and returns the element at the head of the queue
+    dequeue() {
+        if (this.isEmpty()) {
+        return "The queue is empty";
+        }
+        return this.items.shift();
+    }
+    
+    // Return the element at the head of the queue without removing it
+    front() {
+        if (this.isEmpty()) {
+        return "The queue is empty";
+        }
+        return this.items[0];
+    }
+    
+    // Verifies if the queue is empty
+    isEmpty() {
+        return this.items.length === 0;
+    }
+    
+    // Returns the size of the queue
+    size() {
+        return this.items.length;
+    }
+    
+    // Prints the items
+    print() {
+        console.log(this.items);
+    }
+}
+    </code>
+</pre>
+</div>
+
+<div class="code_background">
+    <pre>
+        <code>
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+    
+    push(element) {
+        this.items.push(element);
+    }
+    
+    pop() {
+        if (this.isEmpty()) {
+        return "The stack is empty";
+        }
+        return this.items.pop();
+    }
+    
+    peek() {
+        if (this.isEmpty()) {
+        return "The stack is empty";
+        }
+        return this.items[this.items.length - 1];
+    }
+    
+    isEmpty() {
+        return this.items.length === 0;
+    }
+    
+    size() {
+        return this.items.length;
+    }
+    
+    print() {
+        console.log(this.items);
+    }
+}
+        </code>
+    </pre>
+</div>
+
+<div class="code_background">
+    <pre>
+        <code>
+class SortedList {
+    constructor() {
+        this.items = [];
+    }
+    
+    add(element) {
+        if (this.isEmpty() || element >= this.items[this.items.length - 1]) {
+        this.items.push(element);
+        return;
+        }
+    
+        for (let i = 0; i < this.items.length; i++) {
+        if (element <= this.items[i]) {
+            this.items.splice(i, 0, element);
+            return;
+        }
+        }
+    }
+    
+    remove(element) {
+        const index = this.items.indexOf(element);
+        if (index !== -1) {
+        this.items.splice(index, 1);
+        }
+    }
+    
+    size() {
+        return this.items.length;
+    }
+    
+    isEmpty() {
+        return this.items.length === 0;
+    }
+    
+    print() {
+        console.log(this.items);
+    }
+}
+        </code>
+    </pre>
+</div>
+
+<div class="code_background">
+    <pre>
+        <code>
+class Node {
+    constructor(element) {
+        this.element = element;
+        this.next = null;
+    }
+}
+    
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+    
+    add(element) {
+        const newNode = new Node(element);
+    
+        if (this.head === null) {
+        this.head = newNode;
+        } else {
+        let current = this.head;
+        while (current.next !== null) {
+            current = current.next;
+        }
+        current.next = newNode;
+        }
+    
+        this.size++;
+    }
+    
+    insertAt(element, index) {
+        if (index > 0 && index <= this.size) {
+        const newNode = new Node(element);
+        let current = this.head;
+        let previous;
+        let count = 0;
+    
+        if (index === 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+        } else {
+            while (count < index) {
+            count++;
+            previous = current;
+            current = current.next;
+            }
+            newNode.next = current;
+            previous.next = newNode;
+        }
+    
+        this.size++;
+        } else {
+        return false;
+        }
+    }
+    
+    removeFrom(index) {
+        if (index >= 0 && index < this.size) {
+        let current = this.head;
+        let previous;
+        let count = 0;
+    
+        if (index === 0) {
+            this.head = current.next;
+        } else {
+            while (count < index) {
+            count++;
+            previous = current;
+            current = current.next;
+            }
+            previous.next = current.next;
+        }
+    
+        this.size--;
+        return current.element;
+        } else {
+        return null;
+        }
+    }
+    
+    get(index) {
+        if (index >= 0 && index < this.size) {
+        let current = this.head;
+        let count = 0;
+    
+        while (count < index) {
+            count++;
+            current = current.next;
+        }
+    
+        return current.element;
+        } else {
+        return null;
+        }
+    }
+    
+    indexOf(element) {
+        let current = this.head;
+        let index = 0;
+    
+        while (current !== null) {
+        if (current.element === element) {
+            return index;
+        }
+        index++;
+        current = current.next;
+        }
+    
+        return -1;
+    }
+    
+    size() {
+        return this.size;
+    }
+    
+    isEmpty() {
+        return this.size === 0;
+    }
+    
+    print() {
+        let current = this.head;
+        let result = [];
+    
+        while (current !== null) {
+        result.push(current.element);
+        current = current.next;
+        }
+    
+        console.log(result);
+    }
+    }              
+        </code>
+    </pre>
+</div>
 
             <div class="exercise_text">
                 <h4>Assignment 3</h4>
@@ -669,63 +1078,46 @@ class Program
             each class intervals will contain almost the same number of elements (graphically we have a bar graph with the bars at the same height).
         </p>
         <h4>JavaScript code:</h4>
-        <div style="text-align: center;">
-            <label for="input1">n (# of random values):</label>
-            <input type="number" id="input1" size="10"><br>
+        <div class="code_background">
+            <pre>
+                <code>
+function generateRandomValues(n, k) {
+    const myList = [];
+    const myDictionary = {};
 
-            <label for="input2">k (# of intervals):</label>
-            <input type="number" id="input2" size="10"><br>
-
-            <button onclick="countOccurrences()">Generate</button>
-        </div>
-        <br>
-
-        <canvas id="myCanvas" width="400" height="300"></canvas>
-        
-        <script>
-            function countOccurrences() {
-
-                const canvas = document.getElementById('myCanvas');
-                const ctx = canvas.getContext('2d');
-                // Eliminate the previous canvas so when we click again on the button the output doesn't overlap the previous one
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                const n_value = parseInt(document.getElementById("input1").value);
-                const k_value = parseInt(document.getElementById("input1").value);
-
-                // Inizializza un array per contare le occorrenze in ciascun intervallo
-                const occorrenze = Array(k_value).fill(0);
-
-                // Genera n numeri casuali e conta le occorrenze
-                for (let i = 0; i < n_value; i++) {
-                    const numeroCasuale = (Math.random()).toFixed(2); // Genera un numero casuale in [0, 1)
-                    const intervallo = Math.floor(numeroCasuale * k_value); // Calcola l'intervallo in cui ricade il numero
-
-                    // Incrementa il contatore per l'intervallo corrispondente
-                    occorrenze[intervallo]++;
-                }
-/*
-for (let j = 0; j < k_value; j++) {
-                    const intervalloInferiore = j / k_value;
-                    const intervalloSuperiore = (j + 1) / k_value;
-                    console.log(`Intervallo [${intervalloInferiore.toFixed(1)}, ${intervalloSuperiore.toFixed(1)}): ${occorrenze[j]}`);
-                    
-                    const y = 30 + i * 20; // Posizione verticale per il numero
-                    ctx.fillStyle = '#000';
-                    ctx.fillText("ciao", 10, y);
-                }
-*/
-for (let i = 0; i < 10; i++) {
-        const numeroCasuale = Math.random(); // Genera un numero casuale in [0, 1)
-        const y = 30 + i * 20; // Posizione verticale per il numero
-
-        ctx.fillStyle = '#000';
-        ctx.fillText(numeroCasuale.toFixed(4), 10, y);
+    // k different intervals
+    for (let i = 0; i < k; i++) {
+        const key = `[${i / k}; ${(i + 1) / k})`;
+        myDictionary[key] = 0;
     }
-                
-            }
 
-        </script>
+    // Generates n random floating-point numbers
+    for (let j = 1; j <= n; j++) {
+        // adds random floating-point numbers >= 0 and < 1
+        myList.push(Math.random());
+    }
+
+    // for every generated number, check in which interval it belongs to
+    for (let y = 0; y < myList.length; y++) {
+        for (let i = 0; i < k; i++) {
+            const key = `[${i / k}; ${(i + 1) / k})`;
+            if (myList[y] >= i / k && myList[y] < (i + 1) / k) {
+                myDictionary[key]++;
+            }
+        }
+    }
+
+    console.log(`Distribution with n=${n} and k=${k}`);
+    for (const key in myDictionary) {
+        if (myDictionary.hasOwnProperty(key)) {
+            console.log(`${key}: ${myDictionary[key]}`);
+        }
+    }
+}                    
+                </code>
+            </pre>
+
+        </div>
         </div>
 
         <div class="footer">
