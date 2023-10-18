@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 2</title>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Homework 2</h1>
+
+        <div class="solution">
+            <div class="exercise_text">
+                <h4>Assignment 1</h4>
+                    Choose 3 variables from our surveys:
+                    <br>
+                    - one Qualitative
+                    <br>
+                    - one Quantitative discrete
+                    <br>
+                    - one Quantitative continuous (use <b>class intervals</b> in this case, obviously)
+                    <br>
+                    <br>
+                    Create the most efficient algorithms to compute the frequency (absolute/relative/percentage) distribution of:
+                    <br>
+                    - the 3 variables
+                    <br>
+                    - the joint distribution of 2 variables (use a general logic, where variables could be any number)
+                    <br>
+                    <br>
+                    Double check/compare the results using some DBMS functionalities you prefer (eg., access, oracle online, postgres, ...) 
+            </div>
+
+            <p><u>Dataset 1</u> (Professional Life):</p>
+            <p>
+                <a href="https://docs.google.com/spreadsheets/d/1_pZ_HQl5y4-aNAO8WMsgj0GqsFdZJcB8sqBtHYGSfys/htmlview?urp=gmail_link#gid=0">https://docs.google.com/spreadsheets/d/1_pZ_HQl5y4-aNAO8WMsgj0GqsFdZJcB8sqBtHYGSfys/htmlview?urp=gmail_link#gid=0</a>
+            </p>
+            <p><u>Dataset 2</u> (After Life):</p>
+            <p>
+                <a href="https://docs.google.com/spreadsheets/d/143cBYCDHzJuimOgcGIaIuTsjOz3QfpXfx2Mi9Bk8ZVY/edit#gid=0">https://docs.google.com/spreadsheets/d/143cBYCDHzJuimOgcGIaIuTsjOz3QfpXfx2Mi9Bk8ZVY/edit#gid=0</a>
+            </p>
+            <p>I chose the following 3 variables from dataset 1:</p>
+            <p>
+                <ul>
+                    <li>Qualitative variable: <b>Background (degree)</b></li>
+                    <li>Quantitative discrete variable: <b>Ambitious</b></li>
+                    <li>Quantitative continuous variable: <b>Age</b></li>
+                </ul>
+            </p>
+            <h4>C# code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+using System;
+using System.Diagnostics;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Read the specified CSV file and store values into arrays
+        using (var reader = new StreamReader(@"professionalLife.csv"))
+        {
+            // To store the values of the qualitative variable "Background"
+            List<string> listA = new List<string>();
+            // To store the values of the quantitative discrete variable "Ambitious"
+            List<string> listB = new List<string>();
+            // To store the values of the quantitative continuous variable "Age"
+            List<string> listC = new List<string>();
+            
+
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(';');
+
+                // This array contains all the second column values (Background variable)
+                listA.Add(values[1]);
+                listA.Remove("Background (degree)");
+                // This array contains all the 6th column values (Ambitious variable)
+                listB.Add(values[5]);
+                listB.Remove("Ambitious (0-5)");
+                // This array contains all the 15th column values (Age variable)
+                listC.Add(values[14]);
+                // Remove the name of the column from the elements of the list
+                listC.Remove("Age");
+            }
+
+            /*
+            We want to count the number of duplicate values in the list in order to compute the frequency
+            distribution. To do so, we create a dictionary that will store the value and the quantity.
+            Loop through the items in the list, if the item does not exist in the dictionary, then add it.
+            If the item already does exist, then update the value by 1.
+            */
+            void absoluteFrequency(List<string> l)
+            {
+                Dictionary<string, int> ageDictionary = new Dictionary<string, int>();
+
+                foreach (string s in l)
+                {
+                    // If the age is not in the dictionary we add it inside
+                    if (!ageDictionary.ContainsKey(s))
+                    {
+                        ageDictionary.Add(s, 1);
+                    }
+                    else
+                    {
+                        int count = 0;
+                        // Obtain the value (out count) associated to the specified key (age)
+                        ageDictionary.TryGetValue(s, out count);
+                        ageDictionary.Remove(s);
+                        ageDictionary.Add(s, count + 1);
+                    }
+                }
+
+                // output the results, each age with quantity
+                foreach (KeyValuePair<string, int> entry in ageDictionary)
+                {
+                    Console.WriteLine(entry.Key + ": " + entry.Value);
+                }
+            }
+
+            void relativeFrequency(List<string> l)
+            {
+                Dictionary<string, int> ageDictionary = new Dictionary<string, int>();
+
+                foreach (string s in l)
+                {
+                    // If the age is not in the dictionary we add it inside
+                    if (!ageDictionary.ContainsKey(s))
+                    {
+                        ageDictionary.Add(s, 1);
+                    }
+                    else
+                    {
+                        int count = 0;
+                        // Obtain the value (out count) associated to the specified key (age)
+                        ageDictionary.TryGetValue(s, out count);
+                        ageDictionary.Remove(s);
+                        ageDictionary.Add(s, count + 1);
+                    }
+                }
+
+                decimal total_frequency = 0;
+
+                // output the results, each age with quantity
+                foreach (KeyValuePair<string, int> entry in ageDictionary)
+                {
+                    total_frequency = total_frequency + entry.Value;
+                }
+
+                decimal relative_frequency = 0;
+
+                foreach (KeyValuePair<string, int> entry in ageDictionary)
+                {
+                    relative_frequency = entry.Value / total_frequency;
+                    Console.WriteLine(entry.Key + ": {0:N2}",  relative_frequency);
+                }
+            }
+
+            void percentageFrequency(List<string> l)
+            {
+                Dictionary<string, int> ageDictionary = new Dictionary<string, int>();
+
+                foreach (string s in l)
+                {
+                    // If the age is not in the dictionary we add it inside
+                    if (!ageDictionary.ContainsKey(s))
+                    {
+                        ageDictionary.Add(s, 1);
+                    }
+                    else
+                    {
+                        int count = 0;
+                        // Obtain the value (out count) associated to the specified key (age)
+                        ageDictionary.TryGetValue(s, out count);
+                        ageDictionary.Remove(s);
+                        ageDictionary.Add(s, count + 1);
+                    }
+                }
+
+                decimal total_frequency = 0;
+
+                // output the results, each age with quantity
+                foreach (KeyValuePair<string, int> entry in ageDictionary)
+                {
+                    total_frequency = total_frequency + entry.Value;
+                }
+
+                decimal relative_frequency = 0;
+                decimal percentage_frequency = 0;
+
+                foreach (KeyValuePair<string, int> entry in ageDictionary)
+                {
+                    relative_frequency = entry.Value / total_frequency;
+                    percentage_frequency = relative_frequency * 100;
+                    Console.WriteLine(entry.Key + ": {0:N2}%", percentage_frequency);
+                }
+            }
+
+            // Variable: Background
+            Console.WriteLine("Absolute Frequency:");
+            absoluteFrequency(listA);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Relative Frequency:");
+            relativeFrequency(listA);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Percentage Frequency:");
+            percentageFrequency(listA);
+            Console.WriteLine("--------------------------------------------------------");
+
+
+            // Variable: Ambitious
+            Console.WriteLine("Absolute Frequency:");
+            absoluteFrequency(listB);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Relative Frequency:");
+            relativeFrequency(listB);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Percentage Frequency:");
+            percentageFrequency(listB);
+            Console.WriteLine("--------------------------------------------------------");
+
+
+            // Variable: Age
+            Console.WriteLine("Absolute Frequency:");
+            absoluteFrequency(listC);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Relative Frequency:");
+            relativeFrequency(listC);
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("Percentage Frequency:");
+            percentageFrequency(listC);
+            Console.WriteLine("--------------------------------------------------------");
+        }
+    }
+} 
+                    </code>
+                </pre>
+
+            </div>
+            <h4>JavaScript code:</h4>
+
+            
+            <div class="exercise_text">
+                <h4>Assignment 2</h4>
+                    For the following most important data structures (or others that you may want to suggest) find out how to:
+                    <br>
+                    <br>
+                    -loop (break/continue)
+                    <br>
+                    -add/remove/get/set/check the existence of key/value
+                    <br>
+                    <br>
+                    <b>data structures:</b>
+                    <br>
+                    array, list, dictionary, sorted list, hashset, sortedset, queue, stack, linkedlist
+                    <br>
+                    <br>
+                    Note in a very concise way your finding in your Js Cheatsheet, and, in case a corresponding Js object does not exists, create a simple equivalent class with all necessary corresponding methods. 
+            </div>
+            
+            <div class="exercise_text">
+                <h4>Assignment 3</h4>
+                Generate N uniform random variates in [0,1) and determine the distribution into <b>class intervals</b> [i/k, (i+1)/k), i = 0,..., k-1.
+                <br>
+                Play with N and k values and draw some conclusion on the "shape" of the distribution.
+            </div>
+            <h4>C# code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+class Program
+{
+    static void Generate_random_values(int n, int k)
+    {
+        Random random = new Random();
+        List<double> myList = new List<double>();
+        // The dictionary will contain the pairs: "interval: #elements"
+        Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+        // k different intervals
+        for (int i = 0; i<k; i++)
+        {
+            string key = "[" + i / (double) k + "; " + (i + 1) / (double) k + ")";
+            myDictionary.Add(key, 0);
+        }
+
+        // Generates n random floating-point numbers
+        for (int j = 1; j <= n; j++)
+        {
+            // adds random floating-point numbers >= 0 and < 1
+            myList.Add(random.NextDouble());
+        }
+
+        // for every generated number, check in which interval it belongs to
+        for (int y = 0; y < myList.Count; y++)
+        {
+            //Console.WriteLine(d);
+            for (int i = 0; i < k; i++)
+            {
+                string key = "[" + i / (double) k + "; " + (i + 1) / (double) k + ")";
+                if (myList[y] >=i/(double) k && myList[y]<(i+1)/ (double) k) {
+                
+                    int count = 0;
+                    // Obtain the value (out count) associated to the specified key (age)
+                    myDictionary.TryGetValue(key, out count);
+                    myDictionary.Remove(key);
+                    myDictionary.Add(key, count + 1);
+                    
+
+                }
+
+            }
+        }
+
+        Console.WriteLine("Distribution with n=" + n + " and k=" + k);
+        foreach (KeyValuePair<string, int> entry in myDictionary)
+        {
+            Console.WriteLine(entry.Key + ": " + entry.Value);
+        }
+
+    }
+
+    static void Main()
+    {   
+        Generate_random_values(100, 5);
+        Generate_random_values(500, 5);
+        Generate_random_values(1000, 5);
+        Generate_random_values(1500, 5);
+        Generate_random_values(2000, 5);
+    }
+}
+                    </code>
+                </pre>
+            </div>
+
+        <p>Output:</p>
+        <img src="homework2/outputRandomValues.JPG" alt="line" style="width: 30%;height: 30%;">
+        <p>
+            As we can see from the output, if k remains constant and we increase the number n of the generated numbers in the interval [0;1),
+            each class intervals will contain almost the same number of elements (graphically we have a bar graph with the bars at the same height).
+        </p>
+        <h4>JavaScript code:</h4>
+        <div style="text-align: center;">
+            <label for="input1">n (# of random values):</label>
+            <input type="number" id="input1" size="10"><br>
+
+            <label for="input2">k (# of intervals):</label>
+            <input type="number" id="input2" size="10"><br>
+
+            <button onclick="countOccurrences()">Generate</button>
+        </div>
+        <br>
+
+        <canvas id="myCanvas" width="400" height="300"></canvas>
+        
+        <script>
+            function countOccurrences() {
+
+                const canvas = document.getElementById('myCanvas');
+                const ctx = canvas.getContext('2d');
+                // Eliminate the previous canvas so when we click again on the button the output doesn't overlap the previous one
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const n_value = parseInt(document.getElementById("input1").value);
+                const k_value = parseInt(document.getElementById("input1").value);
+
+                // Inizializza un array per contare le occorrenze in ciascun intervallo
+                const occorrenze = Array(k_value).fill(0);
+
+                // Genera n numeri casuali e conta le occorrenze
+                for (let i = 0; i < n_value; i++) {
+                    const numeroCasuale = (Math.random()).toFixed(2); // Genera un numero casuale in [0, 1)
+                    const intervallo = Math.floor(numeroCasuale * k_value); // Calcola l'intervallo in cui ricade il numero
+
+                    // Incrementa il contatore per l'intervallo corrispondente
+                    occorrenze[intervallo]++;
+                }
+/*
+for (let j = 0; j < k_value; j++) {
+                    const intervalloInferiore = j / k_value;
+                    const intervalloSuperiore = (j + 1) / k_value;
+                    console.log(`Intervallo [${intervalloInferiore.toFixed(1)}, ${intervalloSuperiore.toFixed(1)}): ${occorrenze[j]}`);
+                    
+                    const y = 30 + i * 20; // Posizione verticale per il numero
+                    ctx.fillStyle = '#000';
+                    ctx.fillText("ciao", 10, y);
+                }
+*/
+for (let i = 0; i < 10; i++) {
+        const numeroCasuale = Math.random(); // Genera un numero casuale in [0, 1)
+        const y = 30 + i * 20; // Posizione verticale per il numero
+
+        ctx.fillStyle = '#000';
+        ctx.fillText(numeroCasuale.toFixed(4), 10, y);
+    }
+                
+            }
+
+        </script>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
