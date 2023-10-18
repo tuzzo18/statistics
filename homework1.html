@@ -41,9 +41,11 @@
         }
 
         .code_background {
-            background-color: lightcyan;
+            background-color: lightyellow;
+            padding: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
 
         .solution h2 {
@@ -87,14 +89,15 @@
                     Statistics is the science concerned with developing and studying methods for collecting, analyzing, interpreting and presenting empirical data [1].
                     Statistics holds a central position in almost every field, including industry, commerce, trade, physics, chemistry, economics, mathematics, biology, botany, psychology, astronomy, etc., so the applications of statistics are very wide [2].
                     The difference between Descriptive and Inferential Statistics is essentially that descriptive statistics state facts and proven outcomes from a population,
-                    whereas inferential statistics analyze samplings to make predictions about larger populations [3].
+                    whereas inferential statistics analyze samplings to make predictions about larger populations [3]. Inference is only possible if the sample is representative,
+                    not absolutely but with respect to the variables considered.
                 </p>
                 <li><strong>Describe the concepts of Population, Sample, Attribute, Variable, Level of measurement and Dataset.</strong></li>
                 <p>
-                    A population is the collection of all items of interest to our study. A sample is a subset of the population.
-                    A variable refers to a grouping of several characteristics. Attributes are those characteristics.
-                    A variable's attributes determine its level of measurement. There are four possible levels of measurement: nominal, ordinal, interval, and ratio [4].
-                    A Dataset is a set or collection of data. This set is normally presented in a tabular pattern. Every column describes a particular variable and each row corresponds to a given member of the dataset [5].
+                    A <strong>population</strong> is the collection of all items of interest to our study. A <strong>sample</strong> is a subset of the population.
+                    A <stong>variable</stong> refers to a grouping of several characteristics. <strong>Attributes</strong> are those characteristics.
+                    A variable's attributes determine its <strong>level of measurement</strong>. There are four possible levels of measurement: nominal, ordinal, interval, and ratio [4].
+                    A <strong>dataset</strong> is a set or collection of data. This set is normally presented in a tabular pattern. Every column describes a particular variable and each row corresponds to a statistical unit [5].
                 </p>
                 <li><strong>Briefly describe the main sampling methods.</strong></li>
                 <p>There are two primary types of sampling methods [6]:</p>
@@ -115,7 +118,9 @@
             <h2>Applications</h2>
             <ul>
                 <li><strong>Write a program in C# or VB.NET that creates a window containing a single line, point, circle, rectangle.</strong></li>
+            </ul>
                 <p style="text-align: center;">C# code:</p>
+                <div class="code_background">
 
 <pre>
     <code>
@@ -148,10 +153,11 @@ namespace WinFormsApp1
 }
     </code>
 </pre>
-
+                </div>
 <p>Output:</p>
-<img src="line.JPG" alt="line" style="width: 30%;height: 30%;">
+<img src="homework1/line.JPG" alt="line" style="width: 30%;height: 30%;">
 
+<div class="code_background">
 <pre>
     <code>
 // To draw a point
@@ -178,10 +184,12 @@ namespace WinFormsApp1
 }
     </code>
 </pre>
+</div>
 
 <p>Output:</p>
-<img src="point.JPG" alt="point" style="width: 30%;height: 30%;">
+<img src="homework1/point.JPG" alt="point" style="width: 30%;height: 30%;">
 
+<div class="code_background">
 <pre>
     <code>
 // To draw a circle
@@ -205,10 +213,12 @@ namespace WinFormsApp1
 }
     </code>
 </pre>
+</div>
 
 <p>Output:</p>
-<img src="circle.JPG" alt="circle" style="width: 30%;height: 30%;">
+<img src="homework1/circle.JPG" alt="circle" style="width: 30%;height: 30%;">
 
+<div class="code_background">
 <pre>
     <code>
 // To draw a rectangle
@@ -239,16 +249,18 @@ namespace WinFormsApp1
 }
     </code>
 </pre>
+</div>
 
 <p>Output:</p>
-<img src="rectangle.JPG" alt="rectangle" style="width: 30%;height: 30%;">
+<img src="homework1/rectangle.JPG" alt="rectangle" style="width: 30%;height: 30%;">
 <br>
 <br>
-
+            <ul>
                 <li><strong>Write a program in JavaScript or TypeScript that creates a window containing a single line, point, circle, rectangle.</strong></li>
+            </ul>
                 <p style="text-align: center;">JavaScript code:</p>
 
-                <div>
+                <div class="code_background">
                     <pre>
                         <code> 
           
@@ -326,7 +338,7 @@ drawRectangle();
                 
                 
                 <p>Output:</p>
-                <img src="lpcr.JPG" alt="line-point-circle-rectangle" style="width: 50%;height: 50%;">
+                <img src="homework1/lpcr.JPG" alt="line-point-circle-rectangle" style="width: 50%;height: 50%;">
             </ul>
 
             <h4>Sources</h4>
