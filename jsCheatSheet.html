@@ -82,18 +82,53 @@
         <h1 style="text-align: center;">JavaScript CheatSheet</h1>
 
         <div class="solution">
-            <h4>Generate n random number and count occurrences in k intervals</h4>
+            <h4>Absolute frequency</h4>
             <div class="code_background">
                 <pre>
                     <code>
-const occorrenze = Array(k_value).fill(0);
+function calculateAbsoluteFrequency(list) {
+    const frequency = {};
+    
+    list.forEach((value) => {
+        if (frequency[value] !== undefined) {
+        frequency[value]++;
+        } else {
+        frequency[value] = 1;
+        }
+    });
+    
+    return frequency;
+    }
+                    </code>
+                </pre>
+            </div>
+            <h4>Generate n random numbers and count their occurrences in k intervals</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+const myList = [];
+const myDictionary = {};
 
-for (let i = 0; i < n_value; i++) {
-    const numeroCasuale = (Math.random()).toFixed(2); // Genera un numero casuale in [0, 1)
-    const intervallo = Math.floor(numeroCasuale * k_value); // Calcola l'intervallo in cui ricade il numero
+// k different intervals
+for (let i = 0; i < k; i++) {
+    const key = `[${i / k}; ${(i + 1) / k})`;
+    myDictionary[key] = 0;
+}
 
-    // Incrementa il contatore per l'intervallo corrispondente
-    occorrenze[intervallo]++;
+// Generates n random floating-point numbers
+for (let j = 1; j <= n; j++) {
+    // adds random floating-point numbers >= 0 and < 1
+    myList.push(Math.random());
+}
+
+// for every generated number, check in which interval it belongs to
+for (let y = 0; y < myList.length; y++) {
+    for (let i = 0; i < k; i++) {
+        const key = `[${i / k}; ${(i + 1) / k})`;
+        if (myList[y] >= i / k && myList[y] < (i + 1) / k) {
+            myDictionary[key]++;
+        }
+    }
 }
                     </code>
                 </pre>
