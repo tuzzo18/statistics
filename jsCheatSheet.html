@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 2</title>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">JavaScript CheatSheet</h1>
+
+        <div class="solution">
+            <h4>Generate n random number and count occurrences in k intervals</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+const occorrenze = Array(k_value).fill(0);
+
+for (let i = 0; i < n_value; i++) {
+    const numeroCasuale = (Math.random()).toFixed(2); // Genera un numero casuale in [0, 1)
+    const intervallo = Math.floor(numeroCasuale * k_value); // Calcola l'intervallo in cui ricade il numero
+
+    // Incrementa il contatore per l'intervallo corrispondente
+    occorrenze[intervallo]++;
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
