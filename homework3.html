@@ -185,6 +185,385 @@
             
             <script src="script.js"></script>
 
+            <h4>C# code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
+
+namespace YourNamespace
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateCharts();
+        }
+
+        private void ValidateInputs(int M, int N, double p)
+        {
+            if (p < 0 || p > 1)
+            {
+                MessageBox.Show("The penetration probability (p) should be in the range [0, 1].");
+                return false;
+            }
+
+            if (M <= 0)
+            {
+                MessageBox.Show("The number of systems (M) should be a positive value.");
+                return false;
+            }
+
+            if (N <= 0)
+            {
+                MessageBox.Show("The number of attacks (N) should be a positive value.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private List<Color> GenerateColors(int count)
+        {
+            List<Color> colors = new List<Color>();
+            for (int i = 0; i < count; i++)
+            {
+                colors.Add(HslToRgb((i * 360.0) / count, 100, 50));
+            }
+            return colors;
+        }
+
+        private Dictionary<string, int> CountScoreIntervals(List<int> scores)
+        {
+            Dictionary<string, int> intervals = new Dictionary<string, int>();
+            foreach (int score in scores)
+            {
+                int intervalBase = (int)(score / 2) * 2;
+                string intervalKey = $"{intervalBase},{intervalBase + 2}";
+                if (intervals.ContainsKey(intervalKey))
+                {
+                    intervals[intervalKey]++;
+                }
+                else
+                {
+                    intervals[intervalKey] = 1;
+                }
+            }
+            return intervals;
+        }
+
+        private List<int> SimulateScore(int N, double p, string type = "1a")
+        {
+            List<int> scores = new List<int>();
+            int score = 0;
+            Random random = new Random();
+
+            for (int i = 0; i < N; i++)
+            {
+                double randomValue = random.NextDouble();
+                switch (type)
+                {
+                    case "1a":
+                        if (randomValue < p)
+                        {
+                            score--;
+                        }
+                        else
+                        {
+                            score++;
+                        }
+                        break;
+                    case "1b":
+                        if (randomValue < p)
+                        {
+                            score += 0;
+                        }
+                        else
+                        {
+                            score++;
+                        }
+                        break;
+                    case "1c":
+                        if (randomValue < p)
+                        {
+                            score += 0;
+                        }
+                        else
+                        {
+                            score++;
+                        }
+                        score /= (i + 1);
+                        break;
+                    case "1d":
+                        if (randomValue < p)
+                        {
+                            score += 0;
+                        }
+                        else
+                        {
+                            score++;
+                        }
+                        score /= Math.Sqrt(i + 1);
+                        break;
+                }
+                scores.Add(score);
+            }
+            return scores;
+        }
+
+        private void DrawChart(int M, int N, double p, string type, Canvas canvas)
+        {
+            canvas.Children.Clear();
+
+            double xOffset = 50;
+            double yOffset = canvas.ActualHeight / 2;
+            double xScale = (canvas.ActualWidth - xOffset) / N;
+            double yScale = yOffset / N;
+
+            List<Color> colors = GenerateColors(M);
+
+            // Draw the axis
+            Line xAxis = new Line
+            {
+                X1 = xOffset,
+                Y1 = 0,
+                X2 = xOffset,
+                Y2 = canvas.ActualHeight,
+                Stroke = Brushes.Black
+            };
+            Line yAxis = new Line
+            {
+                X1 = xOffset,
+                Y1 = yOffset,
+                X2 = canvas.ActualWidth,
+                Y2 = yOffset,
+                Stroke = Brushes.Black
+            };
+            canvas.Children.Add(xAxis);
+            canvas.Children.Add(yAxis);
+
+            // Add light gray horizontal gridlines
+            for (int i = -N; i <= N; i += 2)
+            {
+                Line gridLine = new Line
+                {
+                    X1 = xOffset,
+                    Y1 = yOffset - i * yScale,
+                    X2 = canvas.ActualWidth,
+                    Y2 = yOffset - i * yScale,
+                    Stroke = new SolidColorBrush(Color.FromArgb(100, 100, 100, 100)),
+                    StrokeThickness = 0.5
+                };
+                canvas.Children.Add(gridLine);
+            }
+
+            // Label the Y axis
+            for (int i = -N; i <= N; i += 2)
+            {
+                double labelY = yOffset - i * yScale;
+                TextBlock label = new TextBlock
+                {
+                    Text = i.ToString(),
+                    Foreground = Brushes.Black,
+                    TextAlignment = TextAlignment.Right
+                };
+                if (i == N)
+                {
+                    label.VerticalAlignment = VerticalAlignment.Top;
+                }
+                else if (i == -N)
+                {
+                    label.VerticalAlignment = VerticalAlignment.Bottom;
+                }
+                else
+                {
+                    label.VerticalAlignment = VerticalAlignment.Center;
+                }
+                Canvas.SetLeft(label, xOffset - 10);
+                Canvas.SetTop(label, labelY - 7);
+                canvas.Children.Add(label);
+            }
+
+            // Label the X axis
+            for (int i = 1; i <= N; i++)
+            {
+                double labelX = xOffset + i * xScale;
+                TextBlock label = new TextBlock
+                {
+                    Text = i.ToString(),
+                    Foreground = Brushes.Black,
+                    TextAlignment = TextAlignment.Center
+                };
+                if (i == N)
+                {
+                    labelX -= 15;
+                }
+                Canvas.SetLeft(label, labelX);
+                Canvas.SetTop(label, yOffset + 10);
+                canvas.Children.Add(label);
+            }
+
+            // Simulate scores for all M systems and plot them
+            List<List<int>> allScores = new List<List<int>>();
+            for (int system = 0; system < M; system++)
+            {
+                List<int> scores = SimulateScore(N, p, type);
+                allScores.Add(scores);
+
+                Color systemColor = colors[system];
+
+                // Draw the line
+                Polyline polyline = new Polyline
+                {
+                    Stroke = new SolidColorBrush(systemColor),
+                    StrokeThickness = 1
+                };
+                for (int attack = 0; attack < N; attack++)
+                {
+                    double x = xOffset + (attack + 1) * xScale;
+                    double y = yOffset - scores[attack] * yScale;
+                    polyline.Points.Add(new Point(x, y));
+
+                    // Draw a circle for each point
+                    Ellipse ellipse = new Ellipse
+                    {
+                        Width = 6,
+                        Height = 6,
+                        Fill = new SolidColorBrush(systemColor)
+                    };
+                    Canvas.SetLeft(ellipse, x - 3);
+                    Canvas.SetTop(ellipse, y - 3);
+                    canvas.Children.Add(ellipse);
+                }
+                canvas.Children.Add(polyline);
+            }
+
+            // Count the final scores for the histogram
+            List<int> endScores = new List<int>();
+            foreach (List<int> scores in allScores)
+            {
+                endScores.Add(scores[N - 1]);
+            }
+            Dictionary<string, int> intervals = CountScoreIntervals(endScores);
+
+            // Draw the histogram bars for each interval for the final scores
+            double maxBarWidth = canvas.ActualWidth - (xOffset + N * xScale);
+            foreach (var interval in intervals)
+            {
+                string[] intervalBounds = interval.Key.Split(',');
+                int start = int.Parse(intervalBounds[0]);
+                int end = int.Parse(intervalBounds[1]);
+                int midpoint = (start + end) / 2;
+                int count = interval.Value;
+
+                double barLength = (count / (double)M) * maxBarWidth;
+                double barStartY = yOffset - midpoint * yScale;
+                double barStartX = xOffset + N * xScale;
+
+                Rectangle bar = new Rectangle
+                {
+                    Fill = new SolidColorBrush(Color.FromArgb(100, 100, 100, 100)),
+                    Width = barLength,
+                    Height = yScale
+                };
+                Canvas.SetLeft(bar, barStartX);
+                Canvas.SetTop(bar, barStartY);
+                canvas.Children.Add(bar);
+            }
+        }
+
+        private Color HslToRgb(double h, double s, double l)
+        {
+            h /= 360;
+            s /= 100;
+            l /= 100;
+            double r, g, b;
+
+            if (s == 0)
+            {
+                r = g = b = l;
+            }
+            else
+            {
+                double HueToRgb(double p, double q, double t)
+                {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1.0 / 6) return p + (q - p) * 6 * t;
+                    if (t < 1.0 / 2) return q;
+                    if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
+                    return p;
+                }
+
+                double q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                double p = 2 * l - q;
+                r = HueToRgb(p, q, h + 1.0 / 3);
+                g = HueToRgb(p, q, h);
+                b = HueToRgb(p, q, h - 1.0 / 3);
+            }
+
+            return Color.FromArgb(255, (byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
+        }
+
+        private void UpdateCharts()
+        {
+            int M = int.Parse(MTextBox.Text);
+            int N = int.Parse(NTextBox.Text);
+            double p = double.Parse(PTextBox.Text);
+
+            if (!ValidateInputs(M, N, p))
+            {
+                return;
+            }
+
+            DrawChart(M, N, p, "1a", Chart1aCanvas);
+            DrawChart(M, N, p, "1b", Chart1bCanvas);
+            DrawChart(M, N, p, "1c", Chart1cCanvas);
+            DrawChart(M, N, p, "1d", Chart1dCanvas);
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCharts();
+        }
+    }
+}                        
+                    </code>
+                </pre>
+
+            </div>
+
+            <div class="exercise_text">
+                <h4>Exercise 2</h4>
+                <p>
+                    Recall briefly the definition and math notions relevant to "probability space" and make some simple examples, indicating among the triple of the space the meaning of each element in your particular example.
+                    <br>
+                    If you wanted to model probabilistically the homework Exercise 1, explain what are the 3 sets of your probability space and their elements, in this case. 
+                </p>
+            </div>
+            <p>
+                A probability space is a mathematical construct that models a random process or "experiment". It consists of three elements:
+                <br>
+                <br>
+                1. A sample space Omega, which is the set of all possible outcomes.
+                <br>
+                2. An event space F, which is a set of events, an event being a set of outcomes in the sample space.
+                <br>
+                3. A probability function P, which assigns each event in the event space a probability, which is a number between 0 and 1.
+                <br>
+            </p> 
+
         </div>
 
         <div class="footer">
@@ -193,34 +572,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
