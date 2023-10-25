@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 3</title>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1650px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .canvas_container {
+            display: flex;
+            text-align: center;
+        }
+
+        .canvas_container h3 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+
+        .chart_container {
+            text-align: center;
+        }
+
+        .chart_container h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Homework 3</h1>
+
+        <div class="solution">
+            <div class="exercise_text">
+                <h4>Exercise 1</h4>
+                <p>
+                    Part a
+                    <br>
+                    M systems are subject to a series of N attacks. On the x-axis, we indicate the attacks and on the Y-axis we
+                    <br>
+                    simulate the accumulation of a "security score" (-1, 1), where the score is -1 if the system is penetrated
+                    <br>
+                    and 1 if the system was successfully "shielded" or protected. Simulate the score "trajectories" for all systems,
+                    <br>
+                    assuming, for simplicity, a constant penetration probability p at each attack.
+                    <br>
+
+                    Part b
+                    <br>
+                    Same as before, but simulate the cumulated frequency, say f, of penetration. Do the same with the relative
+                    <br>
+                    frequency f/number of attacks and the "normalized" ratio: f/ √number of attacks.
+                    <br>
+                    <br>
+                    For any of the above 4 charts (which will be actually an instance of a unique "object", from a coder's point of view), plot
+                    <br>
+                    a vertical histogram at some point x (day or attack number, user parameter) and at the last abscissa
+                    <br>
+                    value and make your personal considerations on the shape of the distributions.
+                    <br>
+                    Make sure that each animation is enclosed into a "frame" (a rectangle) resizable by the user, by using the mouse
+                    <br>
+                    (you can make a separate, reusable, "ResizableRectangle" object for that). 
+                </p>  
+            </div>
+    
+            <h4>JavaScript code:</h4>
+            <div style="text-align: center;">
+                <label for="M">M (# systems):</label>
+                <input type="number" id="M" value="5" min="1"><br>
+
+                <label for="N">N (# attacks):</label>
+                <input type="number" id="N" value="10" min="1"><br>
+
+                <label for="p">p (probability):</label>
+                <input type="number" id="p" value="0.5" step="0.01" min="0" max="1">
+                <br>
+                <br>
+                <button onclick="update()">Generate</button>
+            </div>
+            <br>
+            <div class="canvas_container">
+                <div class="chart_container">
+                    <h3>Security score</h3>
+                    <canvas id="chart1a" width="800" height="400" style="margin-right: 10px;"></canvas>
+                </div>
+                <div class="chart_container">
+                    <h3>Cumulative frequency</h3>
+                    <canvas id="chart1b" width="800" height="400"></canvas>
+                </div>
+            </div>
+            
+            <div class="canvas_container">
+                <div class="chart_container">
+                    <h3>Relative frequency</h3>
+                    <canvas id="chart1c" width="800" height="400" style="margin-right: 10px;"></canvas>
+                </div>
+                <div class="chart_container">
+                    <h3>Normalized frequency</h3>
+                    <canvas id="chart1d" width="800" height="400"></canvas>
+                </div>
+            </div>
+            
+            <script src="script.js"></script>
+
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
