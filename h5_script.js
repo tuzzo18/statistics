@@ -1,6 +1,11 @@
 const my_canvas = document.getElementById('chart');
 const my_ctx = my_canvas.getContext('2d');
 
+const M = parseInt(document.getElementById('M').value);
+const T = parseInt(document.getElementById('T').value);
+const N = parseInt(document.getElementById('N').value);
+const LMB = parseInt(document.getElementById('lambda').value);
+
 function generateColors(count) {
     const colors = [];
     for (let i = 0; i < count; i++) {
@@ -9,12 +14,23 @@ function generateColors(count) {
     return colors;
 }
 
+function computeProbability(n, t, lmb) {
+    
+    var result = (lmb * (t/n)) % 1;
+  
+    // Seleziona l'elemento HTML con l'ID 'result'
+    var elementoRisultato = document.getElementById('result');
+  
+    // Assegna il risultato all'elemento HTML
+    elementoRisultato.innerHTML = 'The probability λ * (T/N) is: ' + result.toFixed(2);
+  }
+  
+
 // n = # of subintervals --> # of attacks
-// the probability is p = t/n
-function simulateScores(n, t) {
+function simulateScores(n, t, lmb) {
     let score = 0;
     const scores = [];
-    const p = t/n;
+    const p = (lmb * (t/n)) % 1;
     for (let i = 0; i < n; i++) {
         // returns a random number in [0; 1)
         const random_value = Math.random();
@@ -29,7 +45,7 @@ function simulateScores(n, t) {
     return scores;
 }
 
-function drawChart(ctx, canvas, m, t, n) {
+function drawChart(ctx, canvas, m, t, n, lmb) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const xOffset = 50;
@@ -88,7 +104,7 @@ function drawChart(ctx, canvas, m, t, n) {
     // ciclo che disegna le linee del grafico
     // Simulare i punteggi per tutti i sistemi M e tracciarli con colori distinti
     for (let system = 0; system < m; system++) {
-        const scores = simulateScores(n, t);
+        const scores = simulateScores(n, t, lmb);
         const systemColor = colors[system];
 
         // Disegna la linea
@@ -115,16 +131,22 @@ function drawChart(ctx, canvas, m, t, n) {
 function updateChart(ctx, canvas) {
     const M = parseInt(document.getElementById('M').value);
     const T = parseInt(document.getElementById('T').value);
-    const N = parseFloat(document.getElementById('N').value);
+    const N = parseInt(document.getElementById('N').value);
+    const LMB = parseInt(document.getElementById('lambda').value);
 
-    drawChart(ctx, canvas, M, T, N);
+    drawChart(ctx, canvas, M, T, N, LMB);
 }
 
 function update() {
     updateChart(my_ctx, my_canvas);
+    const T = parseInt(document.getElementById('T').value);
+    const N = parseInt(document.getElementById('N').value);
+    const LMB = parseInt(document.getElementById('lambda').value);
+    computeProbability(N, T, LMB);
 }
 
 // Initial drawing of the chart
 window.onload = function() {
     updateChart(my_ctx, my_canvas);
-};
+    computeProbability(N, T, LMB);
+}
