@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW 6</title>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .canvas-container {
+            display: inline-block;
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin: 10px;
+            position: relative;
+            background-color: #fafafa;
+        }
+
+        .canvas-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .canvas-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .canvas-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Homework 6</h1>
+
+        <div class="solution">
+            <div class="exercise_text">
+                <h3>Exercise</h3>
+                Consider a scheme similar to Homework 3 - Part a, where M systems are subject to a series of N attacks.
+                <br>
+                A system is discarded as "unsecure" if it reaches a penetration score of P before reaching, instead, a security score of S.
+                <br>
+                Simulate and represent the probabilities of a system being discarded, for various values of P, example: P = k*10 (k=2,...,10),
+                <br>
+                conditional on the 3 cases for S: S = 20, S = 60, S = 100 (or any other value of S of your choice that you find useful to explore (it could be a user parameter).
+            </div>
+
+            <br>
+
+            <div style="text-align: center;">
+                <label for="M"><b>M</b> (#systems):</label>
+                <input type="number" id="M" value="10" min="1" size="8">
+                <br>
+                <label for="N"><b>N</b> (#attacks):</label>
+                <input type="number" id="N" value="120" step="1" min="1" size="8">
+                <br>
+                <label for="p"><b>p</b> (probability):</label>
+                <input type="number" id="p" value="0.60" min="0.1" step="0.01" max="1" size="8">
+                <br>
+                <label for="S"><b>S</b> (security scores):</label>
+                <input type="number" id="S" value="20" min="20" step="40" max="100" size="8">
+                <br>
+                <br>
+                <div><b>P values</b> = [20, 30, 40, 50, 60, 70, 80, 90, 100]</div>
+                <br>
+                <button onclick="updateChart()">Generate</button>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="simulationChart" width="800" height="500"></canvas>
+            </div>
+
+            <script src="h6_script.js"></script>
+            <br>
+
+            <h3>JavaScript:</h3>
+            <div class="code_background">
+                <pre>
+                    <code>
+                    </code>
+                </pre>
+            </div>
+
+
+            <div class="exercise_text">
+                Find out on the web about the "Gambler's Ruin Problem". See if you can see any analogy with this exercise and make your personal consideration about what your simulation is suggesting to you.
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
