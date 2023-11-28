@@ -71,27 +71,35 @@
             text-align: center;
         }
 
-        .canvas_container {
+        .canvas-container {
+            display: inline-block;
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin: 10px;
+            position: relative;
+            background-color: whitesmoke;
+            width: var(--canvas-scale, 60%);
+            height: var(--canvas-scale, 60%);
+            display: block;
+        }
+
+        .canvas-row {
             display: flex;
-            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .canvas_container h3 {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 10px;
+        .canvas-center {
+            display: flex;
+            justify-content: center;
         }
 
-        canvas {
-            border: 1px solid black;
-        }
-
-        .chart_container {
-            text-align: center;
-        }
-
-        .chart_container h3 {
-            margin-bottom: 10px;
+        .canvas-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
     </style>
 </head>
@@ -116,453 +124,109 @@
             <div class="exercise_text">
                 <h4>Exercise 1</h4>
                 <p>
-                    Part a
+                    <b>Part a</b>
                     <br>
-                    M systems are subject to a series of N attacks. On the x-axis, we indicate the attacks and on the Y-axis we
-                    <br>
-                    simulate the accumulation of a "security score" (-1, 1), where the score is -1 if the system is penetrated
-                    <br>
-                    and 1 if the system was successfully "shielded" or protected. Simulate the score "trajectories" for all systems,
-                    <br>
-                    assuming, for simplicity, a constant penetration probability p at each attack.
+                    M systems are subject to a series of N attacks. On the x-axis, we indicate the attacks and on the Y-axis we simulate the accumulation of a "security score" (-1, 1), where the score is -1 if the system is penetrated and 1 if the system was successfully "shielded" or protected. Simulate the score "trajectories" for all systems, assuming, for simplicity, a constant penetration probability p at each attack.
                     <br>
 
-                    Part b
+                    <b>Part b</b>
                     <br>
-                    Same as before, but simulate the cumulated frequency, say f, of penetration. Do the same with the relative
-                    <br>
-                    frequency f/number of attacks and the "normalized" ratio: f/ √number of attacks.
+                    Same as before, but simulate the cumulated frequency, say f, of penetration. Do the same with the relative frequency f/number of attacks and the "normalized" ratio: f/ √number of attacks.
                     <br>
                     <br>
-                    For any of the above 4 charts (which will be actually an instance of a unique "object", from a coder's point of view), plot
-                    <br>
-                    a vertical histogram at some point x (day or attack number, user parameter) and at the last abscissa
-                    <br>
-                    value and make your personal considerations on the shape of the distributions.
-                    <br>
-                    Make sure that each animation is enclosed into a "frame" (a rectangle) resizable by the user, by using the mouse
-                    <br>
-                    (you can make a separate, reusable, "ResizableRectangle" object for that). 
+                    For any of the above 4 charts (which will be actually an instance of a unique "object", from a coder's point of view), plot a vertical histogram at some point x (day or attack number, user parameter) and at the last abscissa value and make your personal considerations on the shape of the distributions. Make sure that each animation is enclosed into a "frame" (a rectangle) resizable by the user, by using the mouse (you can make a separate, reusable, "ResizableRectangle" object for that). 
                 </p>  
             </div>
     
             <h4>JavaScript code:</h4>
-            <a href="https://github.com/tuzzo18/statistics/blob/main/script.js">code</a>
+            <a href="https://github.com/tuzzo18/statistics/blob/main/h3_script.js">code</a>
             <div style="text-align: center;">
-                <label for="M">M (# systems):</label>
-                <input type="number" id="M" value="5" min="1"><br>
-
-                <label for="N">N (# attacks):</label>
-                <input type="number" id="N" value="10" min="1"><br>
-
-                <label for="p">p (probability):</label>
-                <input type="number" id="p" value="0.5" step="0.01" min="0" max="1">
+                <label for="M"><b>M</b> (# systems):</label>
+                <input type="number" id="M" value="40" min="1">
                 <br>
                 <br>
-                <button onclick="update()">Generate</button>
+
+                <label for="N"><b>N</b> (# attacks):</label>
+                <input type="number" id="N" value="50" min="1">
+                <br>
+                <br>
+
+                <label for="p"><b>p</b> (probability):</label>
+                <input type="number" id="p" value="0.4" step="0.01" min="0" max="1">
+                <br>
+                <br>
+
+                <label for="attackNumber"><b>Attack number to analyze:</b></label>
+                <input type="number" id="attackNumber" value="5" min="0" max="10">
+                <br>
+                <br>
+                <button onclick="updateAllCharts()">Generate</button>
             </div>
             <br>
-            <div class="canvas_container">
-                <div class="chart_container">
-                    <h3>Security score</h3>
-                    <canvas id="chart1a" width="800" height="400" style="margin-right: 10px;"></canvas>
+            
+
+            <h3 style="text-align: center;">Security score</h3>
+            <div class="canvas-center">
+            <div class="canvas-container">
+                <div class="canvas-row">
+                        <canvas id="securityChartOriginal" width="800" height="400"></canvas>
+                    </div>
                 </div>
-                <div class="chart_container">
-                    <h3>Cumulative frequency</h3>
-                    <canvas id="chart1b" width="800" height="400"></canvas>
+            </div>
+    
+            <h3 style="text-align: center;">Cumulative frequency</h3>
+            <div class="canvas-center">
+            <div class="canvas-container">
+                <div class="canvas-row">
+                        <canvas id="securityChart1b" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+                
+            <h3 style="text-align: center;">Relative frequency</h3>
+            <div class="canvas-center">
+            <div class="canvas-container">
+                <div class="canvas-row">
+                        <canvas id="securityChart1c" width="800" height="400" ></canvas>
+                    </div>
+                </div>
+            </div>
+                
+    
+            <h3 style="text-align: center;">Normalized frequency</h3>
+            <div class="canvas-center">
+                <div class="canvas-container canvas">
+                    <div class="canvas-row">
+                        <canvas id="securityChart1d" width="800" height="400" ></canvas>
+                    </div>
                 </div>
             </div>
             
-            <div class="canvas_container">
-                <div class="chart_container">
-                    <h3>Relative frequency</h3>
-                    <canvas id="chart1c" width="800" height="400" style="margin-right: 10px;"></canvas>
-                </div>
-                <div class="chart_container">
-                    <h3>Normalized frequency</h3>
-                    <canvas id="chart1d" width="800" height="400"></canvas>
-                </div>
-            </div>
-            
-            <script src="script.js"></script>
+            <script src="h3_script.js"></script>
 
             <h4>C# code:</h4>
-            <div class="code_background">
-                <pre>
-                    <code>
-using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-
-namespace YourNamespace
-{
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            Loaded += MainWindow_Loaded;
-        }
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateCharts();
-        }
-
-        private void ValidateInputs(int M, int N, double p)
-        {
-            if (p < 0 || p > 1)
-            {
-                MessageBox.Show("The penetration probability (p) should be in the range [0, 1].");
-                return false;
-            }
-
-            if (M <= 0)
-            {
-                MessageBox.Show("The number of systems (M) should be a positive value.");
-                return false;
-            }
-
-            if (N <= 0)
-            {
-                MessageBox.Show("The number of attacks (N) should be a positive value.");
-                return false;
-            }
-
-            return true;
-        }
-
-        private List<Color> GenerateColors(int count)
-        {
-            List<Color> colors = new List<Color>();
-            for (int i = 0; i < count; i++)
-            {
-                colors.Add(HslToRgb((i * 360.0) / count, 100, 50));
-            }
-            return colors;
-        }
-
-        private Dictionary<string, int> CountScoreIntervals(List<int> scores)
-        {
-            Dictionary<string, int> intervals = new Dictionary<string, int>();
-            foreach (int score in scores)
-            {
-                int intervalBase = (int)(score / 2) * 2;
-                string intervalKey = $"{intervalBase},{intervalBase + 2}";
-                if (intervals.ContainsKey(intervalKey))
-                {
-                    intervals[intervalKey]++;
-                }
-                else
-                {
-                    intervals[intervalKey] = 1;
-                }
-            }
-            return intervals;
-        }
-
-        private List<int> SimulateScore(int N, double p, string type = "1a")
-        {
-            List<int> scores = new List<int>();
-            int score = 0;
-            Random random = new Random();
-
-            for (int i = 0; i < N; i++)
-            {
-                double randomValue = random.NextDouble();
-                switch (type)
-                {
-                    case "1a":
-                        if (randomValue < p)
-                        {
-                            score--;
-                        }
-                        else
-                        {
-                            score++;
-                        }
-                        break;
-                    case "1b":
-                        if (randomValue < p)
-                        {
-                            score += 0;
-                        }
-                        else
-                        {
-                            score++;
-                        }
-                        break;
-                    case "1c":
-                        if (randomValue < p)
-                        {
-                            score += 0;
-                        }
-                        else
-                        {
-                            score++;
-                        }
-                        score /= (i + 1);
-                        break;
-                    case "1d":
-                        if (randomValue < p)
-                        {
-                            score += 0;
-                        }
-                        else
-                        {
-                            score++;
-                        }
-                        score /= Math.Sqrt(i + 1);
-                        break;
-                }
-                scores.Add(score);
-            }
-            return scores;
-        }
-
-        private void DrawChart(int M, int N, double p, string type, Canvas canvas)
-        {
-            canvas.Children.Clear();
-
-            double xOffset = 50;
-            double yOffset = canvas.ActualHeight / 2;
-            double xScale = (canvas.ActualWidth - xOffset) / N;
-            double yScale = yOffset / N;
-
-            List<Color> colors = GenerateColors(M);
-
-            // Draw the axis
-            Line xAxis = new Line
-            {
-                X1 = xOffset,
-                Y1 = 0,
-                X2 = xOffset,
-                Y2 = canvas.ActualHeight,
-                Stroke = Brushes.Black
-            };
-            Line yAxis = new Line
-            {
-                X1 = xOffset,
-                Y1 = yOffset,
-                X2 = canvas.ActualWidth,
-                Y2 = yOffset,
-                Stroke = Brushes.Black
-            };
-            canvas.Children.Add(xAxis);
-            canvas.Children.Add(yAxis);
-
-            // Add light gray horizontal gridlines
-            for (int i = -N; i <= N; i += 2)
-            {
-                Line gridLine = new Line
-                {
-                    X1 = xOffset,
-                    Y1 = yOffset - i * yScale,
-                    X2 = canvas.ActualWidth,
-                    Y2 = yOffset - i * yScale,
-                    Stroke = new SolidColorBrush(Color.FromArgb(100, 100, 100, 100)),
-                    StrokeThickness = 0.5
-                };
-                canvas.Children.Add(gridLine);
-            }
-
-            // Label the Y axis
-            for (int i = -N; i <= N; i += 2)
-            {
-                double labelY = yOffset - i * yScale;
-                TextBlock label = new TextBlock
-                {
-                    Text = i.ToString(),
-                    Foreground = Brushes.Black,
-                    TextAlignment = TextAlignment.Right
-                };
-                if (i == N)
-                {
-                    label.VerticalAlignment = VerticalAlignment.Top;
-                }
-                else if (i == -N)
-                {
-                    label.VerticalAlignment = VerticalAlignment.Bottom;
-                }
-                else
-                {
-                    label.VerticalAlignment = VerticalAlignment.Center;
-                }
-                Canvas.SetLeft(label, xOffset - 10);
-                Canvas.SetTop(label, labelY - 7);
-                canvas.Children.Add(label);
-            }
-
-            // Label the X axis
-            for (int i = 1; i <= N; i++)
-            {
-                double labelX = xOffset + i * xScale;
-                TextBlock label = new TextBlock
-                {
-                    Text = i.ToString(),
-                    Foreground = Brushes.Black,
-                    TextAlignment = TextAlignment.Center
-                };
-                if (i == N)
-                {
-                    labelX -= 15;
-                }
-                Canvas.SetLeft(label, labelX);
-                Canvas.SetTop(label, yOffset + 10);
-                canvas.Children.Add(label);
-            }
-
-            // Simulate scores for all M systems and plot them
-            List<List<int>> allScores = new List<List<int>>();
-            for (int system = 0; system < M; system++)
-            {
-                List<int> scores = SimulateScore(N, p, type);
-                allScores.Add(scores);
-
-                Color systemColor = colors[system];
-
-                // Draw the line
-                Polyline polyline = new Polyline
-                {
-                    Stroke = new SolidColorBrush(systemColor),
-                    StrokeThickness = 1
-                };
-                for (int attack = 0; attack < N; attack++)
-                {
-                    double x = xOffset + (attack + 1) * xScale;
-                    double y = yOffset - scores[attack] * yScale;
-                    polyline.Points.Add(new Point(x, y));
-
-                    // Draw a circle for each point
-                    Ellipse ellipse = new Ellipse
-                    {
-                        Width = 6,
-                        Height = 6,
-                        Fill = new SolidColorBrush(systemColor)
-                    };
-                    Canvas.SetLeft(ellipse, x - 3);
-                    Canvas.SetTop(ellipse, y - 3);
-                    canvas.Children.Add(ellipse);
-                }
-                canvas.Children.Add(polyline);
-            }
-
-            // Count the final scores for the histogram
-            List<int> endScores = new List<int>();
-            foreach (List<int> scores in allScores)
-            {
-                endScores.Add(scores[N - 1]);
-            }
-            Dictionary<string, int> intervals = CountScoreIntervals(endScores);
-
-            // Draw the histogram bars for each interval for the final scores
-            double maxBarWidth = canvas.ActualWidth - (xOffset + N * xScale);
-            foreach (var interval in intervals)
-            {
-                string[] intervalBounds = interval.Key.Split(',');
-                int start = int.Parse(intervalBounds[0]);
-                int end = int.Parse(intervalBounds[1]);
-                int midpoint = (start + end) / 2;
-                int count = interval.Value;
-
-                double barLength = (count / (double)M) * maxBarWidth;
-                double barStartY = yOffset - midpoint * yScale;
-                double barStartX = xOffset + N * xScale;
-
-                Rectangle bar = new Rectangle
-                {
-                    Fill = new SolidColorBrush(Color.FromArgb(100, 100, 100, 100)),
-                    Width = barLength,
-                    Height = yScale
-                };
-                Canvas.SetLeft(bar, barStartX);
-                Canvas.SetTop(bar, barStartY);
-                canvas.Children.Add(bar);
-            }
-        }
-
-        private Color HslToRgb(double h, double s, double l)
-        {
-            h /= 360;
-            s /= 100;
-            l /= 100;
-            double r, g, b;
-
-            if (s == 0)
-            {
-                r = g = b = l;
-            }
-            else
-            {
-                double HueToRgb(double p, double q, double t)
-                {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1.0 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1.0 / 2) return q;
-                    if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
-                    return p;
-                }
-
-                double q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                double p = 2 * l - q;
-                r = HueToRgb(p, q, h + 1.0 / 3);
-                g = HueToRgb(p, q, h);
-                b = HueToRgb(p, q, h - 1.0 / 3);
-            }
-
-            return Color.FromArgb(255, (byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
-        }
-
-        private void UpdateCharts()
-        {
-            int M = int.Parse(MTextBox.Text);
-            int N = int.Parse(NTextBox.Text);
-            double p = double.Parse(PTextBox.Text);
-
-            if (!ValidateInputs(M, N, p))
-            {
-                return;
-            }
-
-            DrawChart(M, N, p, "1a", Chart1aCanvas);
-            DrawChart(M, N, p, "1b", Chart1bCanvas);
-            DrawChart(M, N, p, "1c", Chart1cCanvas);
-            DrawChart(M, N, p, "1d", Chart1dCanvas);
-        }
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateCharts();
-        }
-    }
-}                        
-                    </code>
-                </pre>
-
-            </div>
+            <a href="">code</a>
+            <br>
+            <br>
 
             <div class="exercise_text">
                 <h4>Exercise 2</h4>
                 <p>
                     Recall briefly the definition and math notions relevant to "probability space" and make some simple examples, indicating among the triple of the space the meaning of each element in your particular example.
-                    <br>
                     If you wanted to model probabilistically the homework Exercise 1, explain what are the 3 sets of your probability space and their elements, in this case. 
                 </p>
             </div>
             <p>
-                A probability space is a mathematical construct that models a random process or "experiment". It consists of three elements:
+                In probability theory, a probability space is defined by three elements: a sample space, a set of events, and a probability measure.
                 <br>
                 <br>
-                1. A sample space Omega, which is the set of all possible outcomes.
+                1. <b>Sample Space (Ω)</b>: This is the set of all possible outcomes. In this case, each outcome is a sequence of N attacks on M systems, where each attack is either a penetration (-1) or a successful shield (1). So, the sample space is all possible sequences of -1s and 1s of length N for M systems.
                 <br>
-                2. An event space F, which is a set of events, an event being a set of outcomes in the sample space.
                 <br>
-                3. A probability function P, which assigns each event in the event space a probability, which is a number between 0 and 1.
+                2. <b>Set of Events (F)</b>: An event is a subset of the sample space. In this context, an event could be something like “the first system was penetrated at least once” or “all systems were successfully shielded in the first attack”. Each event is a set of sequences from the sample space where the event occurs.
                 <br>
+                <br>
+                3. <b>Probability Measure (P)</b>: This is a function that assigns a probability to each event in F. The probability of an event is the sum of the probabilities of the outcomes that make up the event. Given the constant penetration probability p, we can calculate the probability of each outcome (and thus each event) using the binomial distribution, since each attack is an independent Bernoulli trial.
             </p> 
 
         </div>
