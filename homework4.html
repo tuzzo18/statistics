@@ -176,10 +176,6 @@ main();
                 </pre>
             </div>
             <div class="exercise_text">
-                <h3>Optional</h3>
-                Create a some visual representation of the distribution. Use creatively your fantasy and skills (you may invent new representations, if you like).
-            </div>
-            <div class="exercise_text">
                 <h3>Research</h3>
                 (Revise and improve your simulations in homework 3, where necessary.)
                 <br>
@@ -188,6 +184,34 @@ main();
                 Search on the web about the Central Limit Theorem CLT and compare it with Part a of your homework 3 and say in your own words whether your simulation is somehow related with this theorem, and why.
                 <br>
                 Based on the CLT, how could you modify ("normalize") the "security score" to obtain an asymptotic convergence to a proper distribution?
+            </div>
+            <div class="code_background">
+                <h3>Law of Large Numbers (LLN)</h3>
+                The Law of Large Numbers (LLN) is indeed related to this exercise. The LLN is a theorem in probability and statistics that suggests that as the number of trials or experiments increases, the actual ratio of outcomes will converge on the theoretical, or expected, ratio of outcomes.
+                <br>
+                <br>
+                In the context of this exercise, if we consider each attack on a system as a trial, then the LLN would suggest that as the number of attacks (N) increases, the observed frequency of successful shields (score of +1) should converge to the theoretical probability of a successful shield (1-p), where p is the constant penetration probability.
+                <br>
+                <br>
+                This is because each attack is an independent event, and the outcome of each attack (whether it's a penetration or a successful shield) follows a Bernoulli distribution. The LLN applies to sums of independent and identically distributed random variables, which is the case here.
+                <br>
+                <br>
+                So, if we simulate this scenario for a large number of attacks, we would expect the cumulative frequency of successful shields to stabilize around the value of (1-p), according to the LLN. This is assuming that the probability p remains constant for each attack.
+                <br>
+                <br>
+                In this case, the LLN helps us understand what we should expect on average over many trials (or attacks, in this case).
+
+                <h3>Central Limit Theorem (CLT)</h3>
+                The Central Limit Theorem (CLT) states that the sum of a large number of independent and identically distributed random variables tends towards a normal distribution, regardless of the shape of the original distribution.
+                <br>
+                <br>
+                In the context of this exercise, each attack on a system can be considered as a random variable that takes on the values -1 (penetration) or 1 (successful shield), with probabilities p and 1-p respectively. These random variables are independent (the result of one attack does not influence another) and identically distributed (the probabilities remain constant for each attack).
+                <br>
+                <br>
+                If we simulate this scenario for a large number of attacks (N), the CLT would suggest that the distribution of the sum of the security scores (which could range from -N to N) would approximate a normal distribution as N becomes large. This is because the sum of the security scores is essentially the sum of N independent and identically distributed random variables.
+                <br>
+                <br>
+                So, <b>if we plot the distribution of the sum of the security scores over many simulations, we would expect it to look increasingly like a bell curve as N increases, according to the CLT.</b>
             </div>
         </div>
 
