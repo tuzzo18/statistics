@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 2</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th2: The CLT Meaning, Proof, Simulations</h1>
+
+        <div class="solution">
+            The <b>Central Limit Theorem (CLT)</b> is one of the most important results in probability theory. It states that, under certain conditions, the sum of a large number of random variables is approximately normal.
+            <br>
+            <br>
+            <div class="exercise_text">
+                The Central Limit Theorem states that if you have a population with mean \(\mu\) and standard deviation \(\sigma\) and take sufficiently large random samples from the population with replacement, then <b>the distribution of the sample means will be approximately a normal distribution</b>.
+                No matter whether the source population is normal or skewed, provided the sample size is sufficiently large (usually \(n \geq 30\)).
+            </div>
+            <br>
+            So, if we take random samples (with replacement) of size \(n \geq 30\) from the population and compute the mean for each of the samples, the distribution of sample means should be approximately normal according to the Central Limit Theorem.
+            <br>
+            <br>
+            Suppose that \(X_1, X_2, ..., X_n\) are i.i.d random variables (a random sample of independent observations from a population) with expected values \(\mu < \infty\) and variance \(\sigma^2 < \infty\). Then, the sample mean of that sample (which is itself a random variable) \(\bar{X}=\frac{X_1+X_2+...+X_n}{n}\) has mean \(\mu\) and variance \(\frac{\sigma^2}{n}\). Thus, the <b>normalized</b> sample mean
+            \[Z_n=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}=\frac{X_1+X_2+...+X_n-n\mu}{\sqrt{n}\sigma}\]
+            has mean <b>\(E[Z_n]=0\)</b> and variance <b>\(Var(Z_n)=1\)</b>.
+            <br>
+            <br>
+            <b>Note</b> A normalized random variable refers to a random variable that has been adjusted or transformed in such a way that its values conform to a specific distribution with well-defined properties. Normalization typically involves subtracting the mean of the random variable and dividing by its standard deviation. This transformation ensures that the resulting variable \(Z\) has a mean of 0 and a standard deviation of 1.
+            <br>
+            <br>
+            The Central Limit Theorem states that the CDF (cumulative distribution function) of \(Z_n\) converges to the standard normal CDF.
+            <div class="math-box">
+                <p style="text-align: center;">The Central Limit Theorem (CLT)</p>
+                <br>
+                Let \(X_1, X_2, ..., X_n\) be i.i.d random variables with expected value \(\mu < \infty\) and variance \(\sigma^2 < \infty\). Then, the normalized random variable
+                \[Z_n=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}=\frac{X_1+X_2+...+X_n-n\mu}{\sqrt{n}\sigma}\]
+                converges in distribution to the standard normal random variable as \(n\) goes to infinity, that is
+                \[\lim_{n\to\infty} P(Z_n \leq x) = \Phi(x),\:\:for\:\:all\:\:x \in \mathbb{R}\]
+                where \(\Phi(x)\) is the standard normal CDF.
+            </div>
+            In other words, suppose that a large sample of observations is obtained, each observation being randomly produced in a way that does not depend on the values of the other observations, and that the average (arithmetic mean) of the observed values is computed. If this procedure is performed many times, resulting in a collection of observed averages, the central limit theorem says that if the sample size was large enough, the probability distribution of these averages will closely approximate a normal distribution.
+            <br>
+            <br>
+            This theorem has several variants and applications in probability theory and statistics. It’s important to note that the random variables must be independent and identically distributed (i.i.d.). However, this requirement can be weakened; convergence of the mean to the normal distribution also occurs for non-identical distributions or for non-independent observations if they comply with certain conditions.
+            <br>
+            <br>
+            <b>The CLT is a key concept because it implies that probabilistic and statistical methods that work for normal distributions can be applicable to many problems involving other types of distributions.</b>
+        </div>
+
+        <div class="solution">
+            The Central Limit Theorem makes it easy to understand how population estimates behave when subjected to repeated sampling. When plotted on a graph, the theorem shows the shape of the distribution formed by means of repeated population samples.
+            <br>
+            <br>
+            As the sample sizes get bigger, the distribution of the means from the repeated samples tends to normalize and resemble a normal distribution. The result remains the same regardless of what the original shape of the distribution was. It can be illustrated in the figure below:
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="CLT.png" alt="clt">
+            </div>
+            <br>
+            From the figure above, we can deduce that despite the fact that the original shape of the distribution was uniform, it tends towards a normal distribution as the value of n (sample size) increases.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php</p>
+            <p>[2] https://www.statisticshowto.com/probability-and-statistics/normal-distributions/central-limit-theorem-definition-examples/</p>
+            <p>[3] https://sphweb.bumc.bu.edu/otlt/mph-modules/bs/bs704_probability/BS704_Probability12.html</p>
+            <p>[4] https://corporatefinanceinstitute.com/resources/data-science/central-limit-theorem/</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

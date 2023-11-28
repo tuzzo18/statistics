@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 9</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th9: The Poisson Processes: Meaning, Properties, Simulations</h1>
+
+        <div class="solution">
+            A <b>Poisson process</b> is a type of random mathematical object that consists of points randomly located on a mathematical space. The essential feature of a Poisson process is that the points occur independently of one another. This process is named after French mathematician Siméon Denis Poisson.
+            <br>
+            <br>
+            The Poisson process is often defined on the real line, where it can be considered as a stochastic process. In this setting, it is used in queueing theory to model random events, such as the arrival of customers at a store, phone calls at an exchange, or occurrence of earthquakes, distributed in time.
+            <br>
+            <br>
+            In the plane, the point process, also known as a spatial Poisson process, can represent the locations of scattered objects such as transmitters in a wireless network, particles colliding into a detector, or trees in a forest.
+            <br>
+            <br>
+            <div class="exercise_text">
+                A Poisson process is a stochastic model that describes the occurrence of events in continuous time. It exhibits the key property that the number of events in non-overlapping intervals follows a <b>Poisson distribution</b>:
+                if the average number of events per interval is \(\lambda\), the probability of observing \(k\) events in an interval is given by:
+                \[P(k; \lambda) = \frac{\lambda ^ k e ^{-\lambda}}{k!}\]
+            </div>
+
+            <h4>Example</h4>
+            Chewing gum on a sidewalk. The number of chewing gums on a single tile is approximately Poisson distributed.
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 30%; height: 30%;" src="Chewing_gum_on_a_sidewalk_in_Reykjavík.jpg" alt="poisson distribution">
+            </div>
+
+            <h4>Poisson Process Key properties</h4>
+            <ul>
+                <li><b>Independence</b>: Events occur independently in disjoint intervals.</li>
+                <li><b>Stationarity</b>: The process has a constant rate of event occurrence.</li>
+                <li><b>Memoryless</b>: The time until the next event is memoryless, meaning it does not depend on the past.</li>
+            </ul>
+        </div>
+
+        <div class="solution">
+            <h4>Simulation</h4>
+            See what we have done in <a href="homework5.html">Homework 5</a>.
+
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Poisson_point_process</p>
+            <p>[2] http://www.stat.yale.edu/~pollard/Courses/241.fall97/Poisson.Proc.pdf</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

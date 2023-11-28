@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 1</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th1: The LLN Meaning, Proof, Simulations</h1>
+
+        <div class="solution">
+            The <b>Law of Large Numbers (LLN)</b>, first proved by the Swiss mathematician Jacob Bernoulli in 1713, is a fundamental concept in probability theory and statistics.
+            <br>
+            <br>
+            <div class="exercise_text">
+            The law states that as the number of identically distributed, randomly generated variables increases, their sample mean (average) approaches their theoretical mean.
+            </div>
+            It means that if we repeat an experiment independently a large number of times and average the result, what we obtain should be close to the expected value.
+            <br>
+            <br>
+            Here are some key points about it:
+            <ul>
+                <li>According to the law, the average of the results obtained from a large number of independent identical trials should be close to the expected value and tends to become closer to the expected value as more trials are performed. [2]</li>
+                <br>
+                <li>The law guarantees stable long-term results for the averages of some random events. For example, while a casino may lose money in a single spin of the roulette wheel, its earnings will tend towards a predictable percentage over a large number of spins. [2]</li>
+                <br>
+                <li>Importantly, the law applies only when a large number of observations are considered. [2]</li>
+            </ul>
+            The law of large numbers is used by various businesses and industries to produce reliable results, such as casinos, insurance companies, and renewable energy.
+        </div>
+
+        <div class="solution">
+            There are two main versions of the law of large numbers. They are called the <b>weak</b> and <b>strong</b> laws of the large numbers. The difference between them is mostly theoretical.
+            Before discussing them, it is necessary to define the <b>sample mean</b>.
+            <div class="math-box">
+                <p><b>Definition</b> For i.i.d. (independent and identically distributed) random variables \(X_1\),\(X_2\),...,\(X_n\), the <b>sample mean</b>, denoted by \(\bar{X}\), is defined as</p>
+                <p>\[\bar{X} = \frac{X_1 + X_2 + ... + X_n}{n}.\]</p>
+            </div>
+            Note that since the \(X_i\)'s are random variables, the sample mean \(\bar{X}\) is also a random variable. In particular, we have:
+            <p>\[E[\bar{X}] = E[\frac{X_1+X_2+...+X_n}{n}] = \frac{1}{n}[E(X_1)+E(X_2)+...+E(X_n)]=\]</p>
+            Now, the \(X_i\) are identically distributed, which means they have the same mean \(\mu\). Therefore, replacing \(E(X_i)\) with the alternative notation \(\mu\), we get:
+            <p>\[= \frac{1}{n}[\mu+\mu+...+\mu] = \frac{1}{n}[n\mu] = \mu.\]</p>
+            <p>\[\Rightarrow E(\bar{X})=\mu\]</p>
+            Also, the variance of \(\bar{X}\) is given by
+            <p>\[Var(\bar{X})=Var(\frac{X_1+X_2+...+X_n}{n})=Var(\frac{1}{n}X_1+\frac{1}{n}X_2+...+\frac{1}{n}X_n)=\]</p>
+            <p>\[\frac{1}{n^2}Var(X_1)+\frac{1}{n^2}Var(X_2)+...+\frac{1}{n^2}Var(X_n)=\frac{1}{n^2}[\sigma^2+\sigma^2+...+\sigma^2]=\]</p>
+            <p>\[\frac{1}{n^2}[n\sigma^2]=\frac{\sigma^2}{n}.\]</p>
+            <p>\[\Rightarrow Var(\bar{X})=\frac{\sigma^2}{n}\]</p>
+            <p>The result shows that as the sample size \(n\) increases, the variance of the sample mean decreases.</p>
+
+            <h4>The weak law of large numbers (WLLN)</h4>
+            <div class="math-box">
+                <p>Let \(X_1\),\(X_2\),...,\(X_n\) be i.i.d random variables with a finite expected value \(\mu < \infty\). Then, for any \(\epsilon > 0\),</p>
+                <p>\[\lim_{n\to\infty} P(\vert \bar{X} - \mu \vert \geq \epsilon) = 0.\]</p>
+            </div>
+            It means that, for n that tend to infinite (huge number of i.i.d random variables), the difference between the sample mean and the expected value is small.
+            <br>
+            <br>
+            The proof of the weak law of large number is easier if we assume \(Var(X)=\sigma^{2}\) is finite. In this case we can use Chebyshev's inequality to write
+            <p>\[P(\vert \bar{X} - \mu \vert \geq\epsilon)\leq\frac{Var(\bar{X})}{\epsilon^2} = \frac{Var(X)}{n\epsilon^2}\]</p>
+            which goes to zero as \(n\to\infty.\)
+
+            <h4>The strong law of large numbers (SLLN)</h4>
+            <div class="math-box">
+                <p>Let \(X_1\),\(X_2\),...,\(X_n\) be i.i.d random variables with a finite expected value \(\mu < \infty\). Let also</p>
+                <p>\[\bar{X} = \frac{X_1 + X_2 + ... + X_n}{n}.\]</p>
+                <p>Then, \(\bar{X}\) converges <b>almost surely</b> to \(\mu\).</p>
+            </div>
+        </div>
+
+        <div class="solution">
+            <h4>Simulation</h4>
+            For a practical example, consider a fair, six-sided die. A single roll produces one of the numbers 1, 2, 3, 4, 5, or 6, each with equal probability. Therefore, the expected value of the average of the rolls is 3.5. According to the law of large numbers, if a large number of six-sided dice are rolled, the average of their values (sometimes called the sample mean) will approach 3.5, with the precision increasing as more dice are rolled. [2]
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="lawoflargenumbers.svg" alt="dice rolls">
+                <br>
+                <b>Illustration of the law of large numbers using a particular run of rolls of a single die</b>
+            </div>
+            <br>
+            The illustration shows that as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. Although each run would show a distinctive shape over a small number of throws (at the left), over a large number of rolls (to the right) the shapes would be extremely similar.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://www.britannica.com/science/law-of-large-numbers</p>
+            <p>[2] https://en.wikipedia.org/wiki/Law_of_large_numbers</p>
+            <p>[3] https://www.probabilitycourse.com/chapter7/7_1_1_law_of_large_numbers.php</p>
+            <p>[4] https://online.stat.psu.edu/stat414/lesson/24/24.4</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

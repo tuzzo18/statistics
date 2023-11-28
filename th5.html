@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 5</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th5: Statistical Distributions: Continuous, Discrete, Properties and simulations</h1>
+
+        <div class="solution">
+            All probability distributions can be classified as either <b>discrete</b> probability distributions or <b>continuous</b> probability distributions, depending on whether they define probabilities associated with discrete variables or continuous variables.
+            <br>
+
+            <div class="math-box">
+                <p style="text-align: center;">A <b>random variable</b> \(X\) is a function from the sample space \(\Omega\) to the real numbers:</p>
+                \[X: \Omega \rightarrow \mathbb{R}\]
+            </div>
+
+            So, a random variable is a function that assigns a value to all possible outcomes of an experiment.
+            <br>
+            <br>
+            The technical axiomatic definition requires the sample space \(\Omega\) to be a sample space of a probability space (\(\Omega, \mathcal{F}, P\)).
+            <br>
+            <br>
+            A probability space consists of three elements:
+            <br>
+            1. A <b>sample space</b>, \(\Omega\), which is the set of all possible outcomes.
+            <br>
+            2. An <b>event space</b>, \(\mathcal{F}\), which is a set of events, where an event is a set of outcomes in the sample space (subset of \(\Omega\)).
+            <br>
+            3. A <b>probability function</b>, \(P\), which assigns each event in the event space a probability, which is a number between 0 and 1.
+            <br>
+            <br>
+            The Soviet mathematician Andrey Kolmogorov introduced the notion of probability space, together with other axioms of probability, in the 1930s.
+            <br>
+            <br>
+
+            <div style="text-align: center;">
+                <img style="width: 40%; height: 40%;" src="random-variable.png" alt="random variables">
+            </div>
+
+            <h4>Discrete Probability Distributions</h4>
+
+            <div class="math-box">
+                <p style="text-align: center;">A random variable \(X\) is <b>discrete</b> if it can take on a <b>finite</b> or <b>countably infinite</b> set of values.</p>
+            </div>
+
+            <u>Note</u> A set \(A\) is countable if either
+            <br>
+            - \(A\) is a finite set such as \(\{1,2,3,4\}\)
+            <br>
+            - It can be put in one-to-one correspondence with natural numbers (in this case the set is said to be countably infinite)
+            <br>
+            <br>
+            The probability distributions of discrete variables can be expressed in terms of <b>probability mass functions</b> (pmf). 
+            <br>
+            <br>
+            Some examples of continuous distributions include:
+            <ul>
+                <li><b>Bernoulli</b> distribution: the discrete probability distribution of a random variable which takes the value 1 with probability \(p\) and the value 0 with probability \(q=1-p\).</li>
+                <li><b>Binomial</b> distribution: the discrete probability distribution of the number of successes in a sequence of \(n\) independent experiments, each with its own Boolean-valued outcome: success (with probability \(p\)) or failure (with probability \(q=1-p\)). </li>
+                <li><b>Poisson</b> distribution: expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant mean rate and independently of the time since the last event.</li>
+            </ul>
+
+            <h4>Continuous Probability Distributions</h4>
+
+            <div class="math-box">
+                <p style="text-align: center;">A random variable \(X\) is <b>continuous</b> if it can take on an <b>uncountable</b> set of values.</p>
+            </div>
+            
+            The probability distributions of continuous variables can be expressed in terms of <b>probability density functions</b> (pdf).
+            <br>
+            <br>
+            Some examples of continuous distributions include:
+            <ul>
+                <li><b>Uniform</b> distribution: used to represent a randomly varying quantity within a range \([a, b]\) and whose probability of taking values in a subinterval of \([a, b]\) is proportional to their length.</li>
+                <li><b>Exponential</b> distribution: is the probability distribution of the time between events in a Poisson point process, i.e., a process in which events occur continuously and independently at a constant average rate.</li>
+                <li><b>Normal</b> distribution</li>
+            </ul>
+
+            It’s important to note that a continuous probability distribution differs from a discrete probability distribution in several ways. The probability that a continuous random variable will assume a particular value is zero. As a result, a continuous probability distribution cannot be expressed in tabular form. On the other hand, a discrete distribution includes values that are countable whole numbers.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Random_variable</p>
+            <p>[2] https://en.wikipedia.org/wiki/Continuous_or_discrete_variable</p>
+            <p>[3] https://en.wikipedia.org/wiki/List_of_probability_distributions</p>
+            
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

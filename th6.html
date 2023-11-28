@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 6</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th6: Algorithms for random variates generation</h1>
+
+        <div class="solution">
+            In probability and statistics, a <b>random variate</b> or simply variate is a particular outcome of a random variable; the random variates which are other outcomes of the same random variable might have different values (random numbers).
+            <br>
+            <br>
+            Generating random variates is a fundamental aspect of many computational simulations and statistical methods. There are various algorithms for generating random variates for different probability distributions. The choice of method depends on the specific distribution you are working with. Some methods may be more efficient or easier to implement for certain distributions.
+            <br>
+            <br>
+            Here's a brief overview of some commonly used methods:
+            <h4>Unfirom Distribution</h4>
+            <ul>
+                <li><b>Inverse Transform Sampling</b>: If \(U\) is a random variable uniformly distributed between 0 and 1, and \(F^{-1}\) is the inverse of the cumulative distribution function (CDF) of the desired distribution, then \(F^{-1}(U)\) follows the desired distribution.</li>
+                <li><b>Linear Congruential Generators (LCGs)</b>: These are simple algorithms that generate pseudo-random numbers using a linear recurrence relation. While they are not suitable for all applications due to their periodic behavior, they are often used for generating uniform random variates.</li>
+            </ul>
+            <h4>Normal Distribution</h4>
+            <ul>
+                <li><b>Box-Muller Transform</b>: Generates two independent standard normal random variables from two independent uniform random variables.</li>
+                <li><b>Marsaglia Polar Method</b>: Another method for generating standard normal variates, using polar coordinates.</li>
+            </ul>
+            <h4>Exponential Distribution</h4>
+            <ul>
+                <li><b>Inverse Transform Sampling</b>: Similar to the uniform distribution, if \(U\) is uniformly distributed and \(F^{-1}\) is the inverse of the exponential CDF, then \(F^{-1}(U)\) follows an exponential distribution.</li>
+                <li><b>Ratio-of-Uniforms Method</b>: Involves generating random variates from a double-exponential distribution and then transforming them to follow an exponential distribution.</li>
+            </ul>
+            <h4>Poisson Distribution</h4>
+            <ul>
+                <li><b>Knuth's Algorithm</b>: Uses a recursive formula based on uniform random variables.</li>
+                <li><b>Inversion by Sequential Search</b>: Involves generating a sequence of exponential random variables until the sum exceeds a threshold.</li>
+            </ul>
+            These are just a few examples, and there are many other specialized algorithms for different distributions. Additionally, with the advent of computer software and libraries, many programming languages provide built-in functions for generating random variates from different distributions. These functions often use more advanced algorithms and techniques for efficiency and accuracy.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://rossetti.github.io/RossettiArenaBook/app-rnrv-rvs.html</p>
+            <p>[2] https://en.wikipedia.org/wiki/Non-uniform_random_variate_generation</p>
+            <p>[3] https://www2.isye.gatech.edu/~sman/courses/Mexico2010/Module07-RandomVariateGeneration.pdf</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

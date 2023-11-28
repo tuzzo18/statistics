@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 12</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th12: Ito Integration and Calculus, Concept and Didactical Simulations</h1>
+
+        <div class="solution">
+            Ito integration and calculus are fundamental concepts in stochastic calculus, a branch of mathematics that deals with the analysis of stochastic processes.
+            Stochastic calculus is an extension of traditional calculus that was developed as the standard tools of calculus were inadequate for dealing with random variables and processes.
+            <br>
+            <br>
+            <b>Itô calculus</b>, named after the Japanese mathematician Kiyosi Itô, extends the methods of calculus to stochastic processes such as Brownian motion. The central concept is the Itô stochastic integral, a stochastic generalization of the Riemann-Stieltjes integral in analysis.
+            <br>
+            <br>
+            <div class="exercise_text">
+                The Ito integral is a mathematical tool used to define the integral of a stochastic process with respect to a Brownian motion.
+                Unlike the traditional Riemann-Stieltjes integral, the Ito integral takes into account the stochastic nature of the integrator (Brownian motion).
+            </div>
+            A stochastic process \(X(t)\) is often represented as a collection of random variables indexed by time \(t\).
+            The Ito integral of a function \(f(t, X(t))\) with respect to a Brownian motion \(W(t)\) is denoted as:
+            \[\int_0^t f(s, X(s)) dW(s)\]
+            Important results of Itô calculus include the integration by parts formula and Itô's lemma, which is a change of variables formula. These differ from the formulas of standard calculus, due to quadratic variation terms.
+            <h4>Ito's Lemma</h4>
+            Ito's Lemma is a fundamental result in stochastic calculus. It provides a formula for differentiating a function of a stochastic process.
+            <br>
+            The lemma is a stochastic analog of the chain rule in classical calculus and is crucial for analyzing the dynamics of stochastic processes.
+            <br>
+            <br>
+            In summary, Ito integration and calculus provide essential tools for analyzing and modeling systems subject to randomness. These concepts have widespread applications, particularly in finance, where they are crucial for pricing derivatives and managing risk.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/It%C3%B4_calculus</p>
+            <p>[2] https://math.nyu.edu/~goodman/teaching/DerivSec10/notes/week6.pdf</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

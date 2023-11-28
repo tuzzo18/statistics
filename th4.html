@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 4</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th4: The Glivenko-Cantelli theorem, Proof, Simulations</h1>
+
+        <div class="solution">
+            The Glivenko–Cantelli theorem, sometimes referred to as the Fundamental Theorem of Statistics, is a key concept in probability theory. Named after Valery Ivanovich Glivenko and Francesco Paolo Cantelli, it determines the asymptotic behavior of the empirical distribution function as the number of independent and identically distributed observations grows.
+            <br>
+            <br>
+            <div class="exercise_text">
+                The theorem states that if you have a sequence of independent and identically distributed random variables with a common cumulative distribution function, the empirical distribution function for this sequence converges almost surely to the actual distribution function.
+            </div>
+            In other words, the difference between the empirical cumulative distribution function and the actual cumulative distribution function goes to zero almost surely.
+            <br>
+            <br>
+            Here’s a more formal statement of the theorem:
+            <br>
+            <br>
+            Let \(X_1, X_2, ..., X_n\) be independent and identically distributed random variables with a common cumulative distribution function \(F\). The empirical distribution function \(F_n\) for these variables is defined by:
+            \[F_n(x)=\frac{1}{n}\sum_{i=1}^{n}I(X_i \leq x)\]
+            where \(I\) is the indicator function of the set \(\{ X_i \leq x \}\). For every fixed \(x\), \(F_n(x)\) is a sequence of random variables which converge to \(F(x)\) almost surely.
+            The Glivenko and Cantelli strengthened this result by proving uniform convergence of \(F_n\) to \(F\), i.e.,
+            \[\sup_{x \in \mathbb{R}}\vert F_n(x) - F(x) \vert \to 0\]
+            almost surely.
+            <br>
+            <br>
+            In simpler terms, the theorem states that as the sample size nn increases, the empirical distribution function becomes a better and better approximation of the true distribution function, and this convergence happens almost surely for all possible values of xx. The uniform convergence implies that the approximation is good across the entire range of the distribution.
+            <br>
+            <br>
+            The Glivenko-Cantelli theorem has important implications for the field of statistics, particularly in understanding the behavior of sample-based estimators and the convergence of sample statistics to their population counterparts. It provides a theoretical foundation for using empirical distribution functions as estimators of the true underlying distribution in statistical inference. The theorem also plays a key role in establishing the consistency of certain statistical procedures, contributing to the theoretical underpinning of statistical inference.
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="GCtheorem.png" alt="simulation">
+            </div>
+            <br>
+            The figure shows a simulation in which random samples from a uniform distribution are generated, the empirical cumulative distribution function (ECDF) is calculated, and both the true cumulative distribution function (CDF) and the empirical CDF are plotted.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://home.uchicago.edu/~amshaikh/webfiles/glivenko-cantelli.pdf</p>
+            <p>[2] https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 10</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th10: The Wiener process and the GBM, Derivations and simulations</h1>
+
+        <div class="solution">
+            The Wiener process and the Geometric Brownian Motion (GBM) are mathematical models commonly used in the fields of finance and physics to describe random movements.
+            <h3>Wiener process</h3>
+            The Wiener process, also known as Brownian motion, is a continuous-time stochastic process named after mathematician Norbert Wiener.
+            It is characterized by the property that the increment in any time interval is normally distributed.
+            The process is often used to model the random movements of particles in fluid or the stock prices in financial markets.
+            <h4>Key features</h4>
+            <ul>
+                <li><b>Continuous Paths</b>: The Wiener process has continuous sample paths, meaning the path is continuous as a function of time.</li>
+                <li><b>Stationary Increments</b>: Increments of the process over non-overlapping time intervals are statistically independent and have the same distribution.</li>
+                <li><b>Gaussian Increments</b>: The increment in a small time interval is normally distributed.</li>
+            </ul>
+
+            The Wiener process is often denoted by \(W(t)\), where \(t\) is time.
+            The increments \(W(t_2) - W(t_1)\) are normally distributed with mean zero and variance \(t_2 - t_1\)​.
+            <h3>Geometric Brownian Motion (GBM)</h3>
+            GBM is a continuous-time stochastic process that generalizes the Wiener process by introducing a drift and a volatility parameter.
+            It is widely used to model the dynamics of stock prices and other processes in financial markets.
+            <h4>Key features</h4>
+            <ul>
+                <li><b>Drift Term</b>: GBM incorporates a drift term, representing the average rate of return of the process.</li>
+                <li><b>Volatility Term</b>: It includes a volatility term, representing the random fluctuations around the average rate of return.</li>
+            </ul>
+            The equation for GBM is often expressed as
+            \[dS(t) = \mu S(t)dt + \sigma S(t)dW(t)\]
+            where:
+            <ul>
+                <li>\(S(t)\) is the asset price at time \(t\)</li>
+                <li>\(\mu\) is the average rate of return</li>
+                <li>\(\sigma\) is the volatility</li>
+                <li>\(dW(t)\) is the Wiener process increment</li>
+            </ul>
+            The Wiener process is a special case of GBM when the drift term (\(\sigma\)) is zero, and only the volatility term (\(\sigma\)) is present.
+            <br>
+            <br>
+            Both the Wiener process and GBM are crucial in the modeling of random processes, especially in finance, and they provide valuable insights into understanding and predicting the behavior of dynamic systems. Researchers and practitioners use these models to analyze and make predictions about various stochastic processes.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Wiener_process</p>
+            <p>[2] https://en.wikipedia.org/wiki/Geometric_Brownian_motion</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

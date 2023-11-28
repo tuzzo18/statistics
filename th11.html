@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 11</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th11: The functional CLT (Donsker's invariance principle): Proof, Simulations</h1>
+
+        <div class="solution">
+            Donsker's theorem is a fundamental result in probability theory, particularly in the study of stochastic processes. <b>It establishes a convergence result that connects discrete random walks to Brownian motion</b>.
+            <br>
+            <br>
+            <b>Donsker’s Invariance Principle</b>, also known as Donsker’s theorem or the functional central limit theorem, is a significant concept in probability theory. Named after the mathematician Monroe D. Donsker who formulated it in the 1950s, it is a functional extension of the central limit theorem.
+            <br>
+            <br>
+            The theorem is concerned with the convergence of certain types of stochastic processes to Brownian motion.
+            <br>
+            <div class="math-box">
+                Let \(X_1, X_2, ...\) be a sequence of independent and identically distributed random variables with mean zero and finite variance.
+                <br>
+                Consider the scaled and centered random walk defined by \(S_n = a_1 + a_2 + ... + a_n\), where \(a_i\) are the random variables.
+                <br>
+                Donsker's theorem states that the scaled and centered process \((\frac{S_{[nt]}}{\sqrt{n}})_{t \geq 0}\) converges in distribution to a standard Brownian motion as \(n \rightarrow \infty\).
+            </div>
+            Donsker's theorem plays a crucial role in the development of probability theory and the understanding of the convergence of stochastic processes. It provides a powerful tool for analyzing the behavior of random walks and their connection to continuous processes, particularly Brownian motion.
+            <br>
+            <br>
+            This connection is essential in understanding how discrete processes evolve into continuous processes, bridging the gap between discrete-time and continuous-time stochastic processes.
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 30%; height: 30%;" src="Donskers_invariance_principle.gif" alt="Donsker's invariance principle">
+                <br>
+                <p>Donsker's invariance principle for simple random walk</p>
+            </div>
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Donsker%27s_theorem</p>
+            <p>[2] https://math.uchicago.edu/~may/REU2019/REUPapers/Schondorf.pdf</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 8</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th8: Stochastic processes and SDEs</h1>
+
+        <div class="solution">
+
+            <h3>Stochastic processes</h3>
+
+            Stochastic processes are mathematical models that describe the evolution of random variables over time. They are widely used in various fields, including finance, physics, biology, and engineering, to model systems with inherent randomness.
+            <br>
+            <br>
+            A <b>stochastic process</b> is a mathematical object that is a sequence of random variables indexed by some set. It describes some phenomenon that evolves over time and involves a random component. The observed value at each time is a random variable, and each random variable in the collection of the values is taken from the same mathematical space, known as the state space.
+            <br>
+            <br>
+            <div class="exercise_text">
+                Intuitively, a stochastic process describes some phenomenon that evolves over time (a process) and that involves a random (a stochastic) component. Empirically, we observe such a process by recording values of an appropriate response variable (that takes values varying randomly in some way over time) at various points in time.
+            </div>
+            <br>
+            A stochastic process can be classified in two types:
+            <ul>
+                <li><b>Discrete-Time</b> Processes: Random variables defined at discrete time points.</li>
+                <li><b>Continuous-Time</b> Processes: Random variables defined over a continuous time domain.</li>
+            </ul>
+
+            Examples of stochastic processes are: Brownian motion, Random Walk, Wiener Process, Poisson process, Markov processes.
+
+            <h3>Stochastic Differential Equations (SDEs)</h3>
+
+            <b>Stochastic Differential Equations</b> (SDEs) provide a powerful framework for studying the continuous-time dynamics of stochastic processes.
+            <br>
+            <br>
+            A stochastic differential equation (SDE) is a differential equation in which one or more of the terms is a stochastic process, resulting in a solution which is also a stochastic process.
+            <br>
+            <br>
+            The mathematical theory of stochastic differential equations was developed in the 1940s through the groundbreaking work of Japanese mathematician Kiyosi Itô, who introduced the concept of stochastic integral and initiated the study of nonlinear stochastic differential equations.
+            <br>
+            <br>
+            SDEs have many applications throughout pure mathematics and are used to model various behaviors of stochastic models such as stock prices, random growth models, or physical systems that are subjected to thermal fluctuations.
+            <br>
+            <br>
+            Here's an overview of some significant SDEs:
+            <ul>
+                <li><b>Arithmetic Brownian Motion (ABM)</b></li>
+                \[dX_t = \mu dt + \sigma dW_t\]
+                The process models linear changes, making it suitable for scenarios where the variable of interest evolves in an additive manner. The drift term \(\mu\) represents the average rate of change over time. The volatility term \(\sigma\) represents the random fluctuations or variability around the average.
+                Arithmetic Brownian Motion provides a versatile tool for modeling and understanding the dynamics of various processes that exhibit linear changes and random fluctuations.
+                <br>
+                <br>
+                <li><b>Geometric Brownian Motion (GBM)</b></li>
+                \[dX_t = \mu X_t dt + \sigma X_t dW_t\]
+                GBM is fundamental in financial modeling, especially for modeling stock prices in the Black-Scholes-Merton option pricing model. The parameter \(\mu\) represents the drift (average growth rate), \(\sigma\) is the volatility (diffusion), and \(W_t\) is a Wiener process (Brownian motion).
+                <br>
+                <br>
+                <li><b>Ornstein-Uhlenbeck Process</b></li>
+                \[dX_t = \theta(\mu - X_t)dt + \sigma dW_t\]
+                This process is widely used in physics and finance to model mean-reverting behavior. It describes a particle undergoing random motion while being pulled towards a central point (\(\mu\)) with a speed proportional to the distance.
+                <br>
+                <br>
+                <li><b>Poisson Process</b></li>
+                The Poisson process is often described in terms of its jump intensity or rate, denoted by \(\lambda\). The SDE for a Poisson process \(N_t\) is given by:
+                \[dN_t = \lambda dt +  dW_t\]
+                \(\lambda\): The intensity or rate of the Poisson process.
+                <br>
+                \(dt\): Infinitesimal time increment.
+                <br>
+                \(dW_t\): Wiener process or Brownian motion increment, representing the random jumps.
+                <br>
+                <br>
+                In this SDE, the term \(\lambda dt\) represents the deterministic part, accounting for the regular occurrence of jumps, and \(dW_t\) represents the stochastic part, capturing the randomness associated with the timing of the jumps.
+            </ul>
+
+
+            <h4>Numerical solutions for SDEs</h4>
+            Numerical methods for solving stochastic differential equations include the Euler–Maruyama method, Milstein method, Runge–Kutta method, Rosenbrock method, and methods based on different representations of iterated stochastic integrals.
+            <br>
+            <br>
+            Stochastic processes and SDEs are powerful tools for modeling systems subject to uncertainty and randomness. Their applications span various disciplines, and ongoing research continues to enhance our understanding of their theoretical foundations and practical implications. As technological advances enable the handling of increasingly complex systems, stochastic processes and SDEs will play a crucial role in shaping the future of mathematical modeling and analysis.
+        </div>
+
+        
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Stochastic_process</p>
+            <p>[2] https://en.wikipedia.org/wiki/Stochastic_differential_equation</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

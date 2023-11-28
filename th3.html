@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 3</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightcyan;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th3: The Gaussian Distribution Meaning, Derivations, Simulations</h1>
+
+        <div class="solution">
+            In statistics, a <b>normal distribution</b> or <b>Gaussian distribution</b> is a type of continuous probability distribution for a real-valued random variable. It is named after the German mathematician Carl Friedrich Gauss.
+            <br>
+            <div class="math-box">
+                A continuous random variable \(X\) is said to be a <b>standard normal</b> (standard Gaussian) <b>random variable</b>, written as \(X \sim N(0, 1)\), if its PDF (probability density function) is given by
+                \[f(x) = \frac{1}{\sqrt{2\pi}}exp{\Bigl\{-\frac{x^2}{2}\Bigl\}},\:\:for\:\:all\:\:x \in \mathbb{R}.\] 
+            </div>
+            The parameter \(\mu\) is the mean of the distribution, while the parameter \(\sigma\) is its standard deviation. The variance of the distribution is \(\sigma^2\).
+            <br>
+            <br>
+            In a normal distribution, data is symmetrically distributed with no skew. When plotted on a graph, the data follows a bell shape, with most values clustering around a central region and tapering off as they go further away from the center.
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="Normal_Distribution_PDF.svg" alt="Normal">
+                <br>
+                <b>The red curve is the standard normal distribution</b>
+            </div>
+            <br>
+            Normal distributions have key characteristics that are easy to spot in graphs:
+            <ul>
+                <li>The mean (average), median (midpoint) and mode (most frequent observation) are exactly the same.</li>
+                <li>The distribution is symmetric about the mean: half the values fall below the mean and half above the mean.</li>
+                <li>The distribution can be described by just two parameters: the mean \(\mu\) and the standard deviation \(\sigma\).</li>
+            </ul>
+            The mean is the location parameter while the standard deviation is the scale parameter:
+            <br>
+            - The mean determines where the peak of the curve is centered. Increasing the mean moves the curve right, while decreasing it moves the curve left;
+            <br>
+            - The standard deviation stretches or squeezes the curve. A small standard deviation results in a narrow curve, while a large standard deviation leads to a wide curve.
+            (The variance should be regarded as something like the average of the difference of the actual values from the average. A larger variance indicates a wider spread of values.)
+            <br>
+            <br>
+            <p><b>Empirical rule</b></p>
+            For the normal distribution, the values less than 1 standard deviation away from the mean account for 68.27% of the set:
+            \[P(\mu-\sigma < X < \mu+\sigma) \approx 0.6827\]
+            while 2 standard deviations from the mean account for 95.45%:
+            \[P(\mu-2\sigma < X < \mu+2\sigma) \approx 0.9545\]
+            and three standard deviations account for 99.73%:
+            \[P(\mu-3\sigma < X < \mu+3\sigma) \approx 0.9973\]
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="normalDist.png" alt="Normal">
+            </div>
+            <br>
+            The Gaussian distribution is often used in statistics and int the natural and social sciences to represent real-valued random variables whose distributions are not known. All kinds of variables in natural and social sciences are normally or approximately normally distributed. Height, birth weight, reading ability, job satisfaction, or SAT scores are just a few examples of such variables.
+            <br>
+            <br>
+            Its importance is partly due to the central limit theorem, which states that the sum of many independent and identically distributed (i.i.d.) random variables tends toward a normal distribution, even if the original variables themselves are not normally distributed.
+        </div>
+
+        <div class="solution">
+            <h4>Example</h4>
+            Many naturally-occurring phenomena appear to be normally-distributed. Take, for example, the distribution of the heights of human beings. The average height is found to be roughly 175 cm (5' 9"), counting both males and females.
+            <br>
+            <br>
+            As the chart below shows, most people conform to that average. Meanwhile, taller and shorter people exist, but with decreasing frequency in the population. According to the empirical rule, 99.7% of all people will fall with +/- three standard deviations of the mean, or between 154 cm (5' 0") and 196 cm (6' 5"). Those taller and shorter than this would be quite rare (just 0.15% of the population each).
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="nd_example.webp" alt="Normal">
+            </div>
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Normal_distribution</p>
+            <p>[2] https://www.probabilitycourse.com/chapter4/4_2_3_normal.php</p>
+            <p>[3] https://www.scribbr.com/statistics/normal-distribution/</p>
+            <p>[4] https://www.investopedia.com/terms/n/normaldistribution.asp</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

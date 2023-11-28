@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH 7</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Th7: "Online" Algorithms (Data Streams): Ideas and code</h1>
+
+        <div class="solution">
+            <div class="exercise_text">
+                <b>Online algorithms</b> are algorithms that process data as it becomes available, making decisions or providing solutions without having the entire input in advance. These algorithms are particularly relevant in scenarios where data is continuously streaming or arriving incrementally.
+            </div>
+            It means that an online algorithm processes its input piece-by-piece in a serial fashion, i.e., in the order that <b>the input is fed to the algorithm, without having the entire input available from the start</b>. 
+            <br>
+            <br>
+            Because it does not know the whole input, an online algorithm is forced to make decisions that may later turn out not to be optimal, and the study of online algorithms has focused on the quality of decision-making that is possible in this setting.
+            <br>
+
+            <h4>Online Problems and Algorithms</h4>
+            <ul>
+                <li><b>Online Pagin</b>g: In the online paging problem, a sequence of page requests is processed, and the algorithm must decide which pages to keep in memory (of fixed-size), with the goal of minimizing page faults (when a requested page is not in memory).</li>
+                <br>
+                <div class="code_background">
+                    <pre>
+                        <code>
+Algorithm: Online Paging
+
+Input: Sequence of page requests
+        Cache size (number of pages that can be held in memory)
+
+Initialize an empty cache
+
+For each page request in the sequence:
+    If the page is already in the cache:
+        Do nothing (cache hit)
+    Else:
+        If the cache is full:
+            Remove the least recently used page from the cache
+        Add the requested page to the cache
+
+End Algorithm
+                        </code>
+                    </pre>
+
+                </div>
+                <li><b>Online Bin Packing</b>: In the online bin packing problem, items of varying sizes arrive one at a time, and the goal is to pack them into bins efficiently, i.e., minimizing the number of bins used.</li>
+                <br>
+                <div class="code_background">
+<pre>
+    <code>
+Algorithm: Online Bin Packing
+
+Input: Sequence of items with sizes
+        Bin capacity (maximum size a bin can hold)
+
+Initialize an empty set of bins
+
+For each item in the sequence:
+    Try to pack the item into an existing bin (first fit, best fit, etc.)
+    If the item doesn't fit in any existing bins:
+        Open a new bin and place the item in it
+
+End Algorithm        
+    </code>
+</pre>
+
+                </div>
+                <li><b>Online Scheduling</b>: In online scheduling, tasks arrive over time, and the algorithm must decide how to schedule them to optimize some criteria (e.g., minimizing completion time).</li>
+            </ul>
+
+            These pseudocodes provide a high-level overview of the algorithms. The specific implementation details, such as the method for selecting which page to evict in the paging algorithm or the bin-packing strategy, may vary based on the specific requirements and variations of these algorithms. Additionally, more sophisticated algorithms may exist for these problems, and the choice of algorithm depends on the specific characteristics of the problem at hand.
+            <br>
+            <br>
+            Online algorithms are contrasted with offline algorithms, which have access to the entire input dataset before processing begins.
+            <br>
+            <br>
+            Competitive analysis is a common framework for evaluating the performance of online algorithms.
+            It compares the performance of an online algorithm to an optimal offline algorithm, which has knowledge of the entire input sequence.
+            The competitive ratio is a measure of how well the online algorithm performs compared to the offline optimal algorithm.
+            <br>
+            <br>
+            Research in online algorithms continues to evolve, addressing new challenges arising in dynamic and streaming data environments. Advances in this field contribute to more efficient and responsive algorithms for real-world applications where data arrives continuously.
+        </div>
+
+        <h4>Sources</h4>
+            <p>[1] https://en.wikipedia.org/wiki/Online_algorithm#:~:text=In%20computer%20science%2C%20an%20online,input%20available%20from%20the%20start.</p>
+            <p>[2] https://en.wikipedia.org/wiki/Streaming_algorithm</p>
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
