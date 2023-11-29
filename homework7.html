@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="Rettangolo.js?Ver20"></script>
+    <script src="My2dUtilities.js?Ver20"></script>
+    <script src="MyChartUtilities.js?Ver20"></script>
+    <script src="MyDistributionUtilities.js?Ver20"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <title>HW 7</title>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            padding: 20px;
+            text-align: left; /* Imposta il testo a sinistra */
+        }
+
+        .solution {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .exercise_text {
+            background-color: lightsalmon;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .header {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .code_background {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .solution h2 {
+            margin-bottom: 10px;
+        }
+
+        .solution p {
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        canvas {
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        /* Style the box */
+        .math-box {
+            border: 2px solid black;
+            padding: 10px;
+            width: 845px; /* Adjust the width as needed */
+            margin: 20px; /* Add margin for spacing */
+            box-sizing: border-box; /* Include padding and border in the box size */
+            overflow: auto; /* Add scrollbars if content overflows */
+        }
+
+        /* Style the text inside the box */
+        .math-box p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 style="margin-bottom: 0;">Statistics Course 2023/24</h1>
+            <p style="color: #555; font-size: 15px;">MSc in Cybersecurity - Sapienza Universit&agrave; di Roma</p>
+            <p>
+                <strong>Riccardo Tuzzolino</strong>
+            </p>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="index.html">&larr; home</a>
+        </p>
+
+        <h1 style="text-align: center;">Homework 7</h1>
+
+        <div class="solution">
+            <div class="exercise_text">
+                Consider a scheme similar to Homework 3.
+                <br>
+                <br>
+                First of all realize that the general scheme that you used so far (random walk and also Poisson process, etc.), can, more in general,
+                be used for any stochastic differential equations SDE (see, for instance, <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Maruyama_method">Euler-Maruyama method</a>).
+                <br>
+                <br>
+                In other words, with minor additions to your program you can now generalize this tool to simulate almost any stochastic
+                differential equations of interest for many applications.
+                <br>
+                <br>
+                Create a web only version where you allow the user to explore (selectable by user) any useful stochastic process.
+                <br>
+                <br>
+                Do a research on the web and include any SDE that you think its interesting.
+            </div>
+
+            <div class="math-box">
+                <p>
+                    Implemented stochastic processes: <br><br>
+                    - <b> Brownian Motion (Wiener standard): </b>
+                    <br>
+                    Standard BM ≈ Σ N(0, dt), where dt=1/n, mean=0, var=1 at last time n, taken as 1 <br><br>
+                    - <b> Arithmetic Brownian Motion: </b> 
+                    <br>
+                    General (arithmetic) Brownian motion ≈ Σ N(μ dt, σ² dt), where dt=1/n, mean=μ, var=σ² at last time n, taken as 1 <br><br>
+                    - <b> Geometric Brownian Motion: </b> 
+                    <br>
+                    \[ S_t = S_0  \exp\biggl(\biggl(\mu-\frac{\sigma^2}{2}\biggl)t +  \sigma W_t\biggl)\:\:where\:\:W_t\:\:is\:\:a\:\:standard\:\:BM\]
+                    - <b> Ornstein-Uhlenbeck:</b>  
+                    <br>
+                    \[dx_t = \theta \bigl(\mu - x_t \bigl)dt + \sigma dW_t\]  
+                </p>
+            </div>
+
+            <h2 style="text-align: center;">Euler-Maruyama Simulator</h2>
+
+            <div style="text-align: center;">
+                
+                    <label for="inputTimes"><b>#Times:</b></label>
+                    <input type="number" id="inputTimes" value=500 min="10" max="10000" step="10" size="10">
+
+                    <label for="inputPaths"><b>#Sample paths:</b></label>
+                    <input type="number" id="inputPaths" value=500 min="10" max="10000" step="10" size="10">
+
+                    <label for="inputMu"><b>μ (drift):</b></label>
+                    <input type="number" id="inputMu" value=0 min="-20" max="20" step=".1" size="10">
+
+                    <br>
+                    <br>
+
+                    <label for="inputSigma"><b>σ (diffusion):</b></label>
+                    <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1" size="10">
+
+                    <label for="inputLambda"><b>λ:</b></label>
+                    <input type="number" id="inputLambda" value=50 min="1" max="1000" step="1" size="10">
+
+                    <label for="inputTheta"><b>&theta;:</b></label>
+                    <input type="number" id="inputTheta" value=2.0 min="0.1" max="20" step="0.1" size="10">
+
+                    <br>
+                    <br>
+
+                    <div>
+                        <!-- Drop-down menu -->
+                        <select id="gruppo" name="gruppo">
+                            <option value="RANDOM_WALK" selected>Random Walk (RW) [µ=0, uses σ]</option>
+                            <option value="POISSON">Poisson [uses rate of occurrences λ]</option>
+                            <option value="BROWNIAN_MOTION_STANDARD">Standard Brownian Motion [µ=0, σ=1]</option>
+                            <option value="BROWNIAN_MOTION_GEN">Brownian Motion (arithmetic) [uses µ, σ]</option>
+                            <option value="BROWNIAN_MOTION_GEO">Brownian Motion (geometric) [uses µ, σ]</option>
+                            <option value="ORNSTEIN_UHLENBECK">Ornstein-Uhlenbeck [uses θ, µ, σ]</option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <button onclick="mainTask()" type="button">Generate</button>
+                    <br>
+                    <br>
+            </div>
+
+            <canvas id="myCanvas" width="880" height="600" oncontextmenu="return false;"></canvas>
+
+
+            <script src="h7_scriptDropDown.js"></script>
+
+            <br>
+            <div class="exercise_text">
+                <b>Optional (+1 grade):</b>
+                Compare also with other possible simulation schemes which have been proposed (e.g., Milstein, Runge-Kutta, Heun's, ...), pointing out possible differences. 
+            </div>
+            <div class="code_background">
+                <h4>Comparison of Stochastic Differential Equation Simulation Schemes</h4>
+                The Euler-Maruyama method is a numerical technique commonly used to simulate solutions to stochastic differential equations (SDEs). There are several other simulation schemes that have been proposed for solving SDEs, each with its own strengths and weaknesses.
+                <br>
+                <br>
+                <b>Euler-Maruyama Method:</b>
+                <ul>
+                <li><strong>Algorithm:</strong> Given an SDE of the form \(dX_t = f(X_t) \, dt + g(X_t) \, dW_t\), the Euler-Maruyama method updates the solution at each time step as follows:
+                    \[X_{t + \Delta t} = X_t + f(X_t) \, \Delta t + g(X_t) \, \Delta W_t,\]
+                    where \(\Delta t\) is the time step and \(\Delta W_t\) is a random increment.</li>
+                <li><strong>Pros:</strong>
+                    <ul>
+                    <li>Simple and computationally efficient.</li>
+                    <li>Easy to implement.</li>
+                    </ul>
+                </li>
+                <li><strong>Cons:</strong>
+                    <ul>
+                    <li>Strong order of convergence of 0.5.</li>
+                    <li>Numerical instability for certain SDEs.</li>
+                    </ul>
+                </li>
+                </ul>
+
+                <b>Milstein Method:</b>
+                <ul>
+                <li><strong>Algorithm:</strong> The Milstein method is an extension of the Euler-Maruyama method with a correction term to improve accuracy. The update formula is:
+                    \[X_{t + \Delta t} = X_t + f(X_t) \, \Delta t + g(X_t) \, \Delta W_t + \frac{1}{2} g(X_t) g'(X_t) (\Delta W_t^2 - \Delta t),\]
+                    where \(g'\) is the partial derivative of \(g\) with respect to \(X\).</li>
+                <li><strong>Pros:</strong>
+                    <ul>
+                    <li>Higher order of convergence (typically 1).</li>
+                    <li>Improved accuracy for certain SDEs.</li>
+                    </ul>
+                </li>
+                <li><strong>Cons:</strong>
+                    <ul>
+                    <li>Increased computational cost due to the derivative term.</li>
+                    </ul>
+                </li>
+                </ul>
+
+                <b>Runge-Kutta Methods:</b>
+                <ul>
+                <li><strong>Algorithm:</strong> Runge-Kutta methods are a family of numerical techniques widely used for solving ordinary differential equations (ODEs). They can be adapted to SDEs by treating the stochastic part separately.</li>
+                <li><strong>Pros:</strong>
+                    <ul>
+                    <li>Higher order of convergence (e.g., second-order or fourth-order).</li>
+                    <li>Improved accuracy.</li>
+                    </ul>
+                </li>
+                <li><strong>Cons:</strong>
+                    <ul>
+                    <li>More complex implementation.</li>
+                    <li>May require more function evaluations.</li>
+                    </ul>
+                </li>
+                </ul>
+
+                <b>4. Heun's Method:</b>
+                <ul>
+                <li><strong>Algorithm:</strong> Heun's method is a deterministic counterpart to the Euler-Maruyama method and is also known as the improved Euler method. It uses a predictor-corrector approach:
+                    <ul>
+                    <li><strong>Predictor:</strong> \(\tilde{X}_{t + \Delta t} = X_t + f(X_t) \, \Delta t\),</li>
+                    <li><strong>Corrector:</strong> \(X_{t + \Delta t} = X_t + \frac{1}{2} [f(X_t) + f(\tilde{X}_{t + \Delta t})] \, \Delta t\).</li>
+                    </ul>
+                </li>
+                <li><strong>Pros:</strong>
+                    <ul>
+                    <li>Improved accuracy over the Euler method.</li>
+                    </ul>
+                </li>
+                <li><strong>Cons:</strong>
+                    <ul>
+                    <li>Still a first-order method.</li>
+                    </ul>
+                </li>
+                </ul>
+                The choice of method depends on the specific characteristics of the SDE being solved and the requirements of the simulation. It's common to balance the trade-off between computational efficiency and accuracy based on the problem at hand. Advanced methods, such as adaptive step-size control or hybrid methods, can also be explored for more challenging SDEs.
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <p>&copy; 2023 All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
