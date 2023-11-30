@@ -174,8 +174,10 @@
                     <label for="inputSigma"><b>σ (diffusion):</b></label>
                     <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1" size="10">
 
+                    
                     <label for="inputLambda"><b>λ:</b></label>
                     <input type="number" id="inputLambda" value=50 min="1" max="1000" step="1" size="10">
+                    
 
                     <label for="inputTheta"><b>&theta;:</b></label>
                     <input type="number" id="inputTheta" value=2.0 min="0.1" max="20" step="0.1" size="10">
@@ -186,8 +188,10 @@
                     <div>
                         <!-- Drop-down menu -->
                         <select id="gruppo" name="gruppo">
+                            <!--
                             <option value="RANDOM_WALK" selected>Random Walk (RW) [µ=0, uses σ]</option>
                             <option value="POISSON">Poisson [uses rate of occurrences λ]</option>
+                            -->
                             <option value="BROWNIAN_MOTION_STANDARD">Standard Brownian Motion [µ=0, σ=1]</option>
                             <option value="BROWNIAN_MOTION_GEN">Brownian Motion (arithmetic) [uses µ, σ]</option>
                             <option value="BROWNIAN_MOTION_GEO">Brownian Motion (geometric) [uses µ, σ]</option>
