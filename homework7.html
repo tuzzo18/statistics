@@ -210,6 +210,88 @@
 
             <script src="h7_scriptDropDown.js"></script>
 
+            <h4>Crucial part of the  JavaScript code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+const dropdown = document.getElementById("gruppo");
+
+const selectedValue = dropdown.value;
+
+// Perform actions based on the selected value
+switch (selectedValue) {
+
+    case "BROWNIAN_MOTION_STANDARD":
+        // Code for Standard Brownian Motion option
+        representAsScalingLimit = true;
+        myVariate_MinView = -sigmaMultipleForRange;
+        myVariate_MaxView = sigmaMultipleForRange;
+        myRandomJump = () => RandomUtilities.gaussian(0, sqrt_dt);
+        myVariate = (sumOfJumps) => sumOfJumps;
+        mul = false; 
+        break;
+
+    case "BROWNIAN_MOTION_GEN":
+        // Code for Brownian Motion (arithmetic) option
+        representAsScalingLimit = true;
+        myVariate_MinView = Math.min(0, mu - sigmaMultipleForRange * sigma);
+        myVariate_MaxView = Math.max(0, mu + sigmaMultipleForRange * sigma);
+        myRandomJump = () => RandomUtilities.gaussian(mu * dt, sigma_sqrt_dt);
+        myVariate = (sumOfJumps) => sumOfJumps;
+        mul = false;
+        break;
+
+    case "BROWNIAN_MOTION_GEO":
+        // Code for Brownian Motion (geometric) option
+        representAsScalingLimit = true;
+        myVariate_MinView = 0;
+        myVariate_MaxView = Math.exp((mu + 3 * sigma) * n * dt);
+        myRandomJump = () => Math.exp(RandomUtilities.gaussian((mu - sigma * sigma / 2) * dt, sigma_sqrt_dt));
+        myVariate = (productOfJumps) => productOfJumps;
+        mul = true;
+        break;
+
+    case "ORNSTEIN_UHLENBECK":
+        // Code for Ornstein-Uhlenbeck option
+        representAsScalingLimit = false;
+        myVariate_MinView = mu - sigmaMultipleForRange * sigma;
+        myVariate_MaxView = mu + sigmaMultipleForRange * sigma;
+        myRandomJump = (currentX) => RandomUtilities.gaussian(theta * (mu - currentX) * dt, sigma_sqrt_dt);
+        myVariate = (sumOfJumps) => sumOfJumps;
+        mul = false;
+        break;
+
+    default:
+        break;
+}
+                    </code>
+                </pre>
+            </div>
+            <p>The gaussian() function implements the Marsaglia polar method for generating random numbers from a normal (Gaussian) distribution with a given mean (Mean) and standard deviation (StdDev).</p>
+            <p>The Marsaglia polar method is known for its simplicity and efficiency in producing normally distributed random values.</p>
+            <div class="code_background">
+                <pre>
+                    <code>
+//Marsaglia polar method
+static gaussian(Mean, StdDev) {
+
+    let u, v, s = 0;
+
+    while (s >= 1 || s === 0) {
+        u = 2 * Math.random() - 1;
+        v = 2 * Math.random() - 1;
+        s = u * u + v * v;
+    }
+
+    s = Math.sqrt(-2 * Math.log(s) / s);
+    return Mean + StdDev * u * s;
+
+}
+                    </code>
+                </pre>
+
+            </div>
+
             <br>
             <div class="exercise_text">
                 <b>Optional (+1 grade):</b>
