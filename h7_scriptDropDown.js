@@ -95,7 +95,7 @@ class MyRndUtilities {
 
         mu = Number(inputMu.value);
         sigma = Number(inputSigma.value);
-        lambda = Number(inputLambda.value);
+        //lambda = Number(inputLambda.value);
         theta = Number(inputTheta.value);
         n = Math.round(Number(inputTimes.value));  //forzo conversione intero per assicurare l'uguaglianza con l'indice t del loop
         numberOfSamplePaths = Number(inputPaths.value);
@@ -111,7 +111,7 @@ class MyRndUtilities {
         const sqrt_dt = Math.sqrt(dt);              //caso di sigma=1
 
         const dropdown = document.getElementById("gruppo");
-        console.log(dropdown.value)
+        //console.log(dropdown.value)
 
         const selectedValue = dropdown.value;
         
