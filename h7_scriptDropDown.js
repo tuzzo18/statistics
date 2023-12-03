@@ -288,7 +288,7 @@ class MyRndUtilities {
         ctx.fillStyle = "black";
         ctx.fillText("paths: " + currentPathNumber + "  avg = " + avgAtLastTime.toFixed(2) + "  var = " + (ssAtLastTime / numberOfSamplePaths).toFixed(2), rectChart.x + 350, rectChart.bottom() + 30);
         ctx.fillStyle = "black";
-        ctx.fillText(myProcessValueDescription, rectChart.x + 100, rectChart.y + 15);
+        //ctx.fillText(myProcessValueDescription, rectChart.x + 100, rectChart.y + 15);
 
         //tacche tempi/trials e tempi
 
