@@ -400,6 +400,87 @@ function calculateJointDistribution(list1, list2) {
                 </pre>
             </div>
 
+            <div class="exercise_text">
+                <h4>Comparison using <a href="https://livesql.oracle.com/apex/f?p=590:1000">Oracle Live SQL</a></h4>
+            </div>
+            <div class="code_background">
+                <pre>
+                    <code>
+CREATE TABLE universityStudent (
+    background VARCHAR2(100),
+    age NUMBER
+);
+
+INSERT INTO universityStudent (background, age) VALUES ('Engineering in computer science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer and System Engineering', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science and Engineering', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Software and Information Engineering', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 24);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 24);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 25);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 25);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Engineering', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 24);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 25);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 27);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 24);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 25);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 39);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 26);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 27);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 25);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 22);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 21);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 26);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 27);
+INSERT INTO universityStudent (background, age) VALUES ('Computer Science', 23);
+                    </code>
+                </pre>
+            </div>
+            <p>Using the following SQL query:</p>
+            <div class="code_background">
+                <pre>
+                    <code>
+SELECT background, age, COUNT(*) as count
+FROM universityStudent
+GROUP BY background, age
+ORDER BY background, age;
+                    </code>
+                </pre>
+            </div>
+            <p>we select the background and age columns from the universityStudent table and counts the number of occurrences for each unique combination of background and age. The results are then ordered by background and age. The output is the following:</p>
+            <img src="sqlExample.JPG" alt="sql" style="width: 30%; height: 30%;">
             
             <div class="exercise_text">
                 <h4>Assignment 2</h4>
