@@ -110,9 +110,9 @@
             <br>
             <br>
             <div class="exercise_text">
-                The theorem states that if you have a sequence of independent and identically distributed random variables with a common cumulative distribution function, the empirical distribution function for this sequence converges almost surely to the actual distribution function.
+                The theorem states that if you have a sequence of independent and identically distributed random variables with a common cumulative distribution function, the empirical cumulative distribution function for this sequence converges almost surely to the actual cumulative distribution function.
             </div>
-            In other words, the difference between the empirical cumulative distribution function and the actual cumulative distribution function goes to zero almost surely.
+            In other words, the difference between the empirical cumulative distribution function and the actual cumulative distribution function goes to zero as the sample size \(n\) tends to infinity.
             <br>
             <br>
             Here’s a more formal statement of the theorem:
@@ -133,15 +133,28 @@
             <br>
             <br>
             <div style="text-align: center;">
-                <img style="width: 60%; height: 60%;" src="GCtheorem.png" alt="simulation">
+                <img style="width: 50%; height: 50%;" src="Empirical_cdf_normal.svg" alt="simulation">
+                <p>Empirical distribution function of a standard normally distributed sample of size n=100</p>
             </div>
             <br>
             The figure shows a simulation in which random samples from a uniform distribution are generated, the empirical cumulative distribution function (ECDF) is calculated, and both the true cumulative distribution function (CDF) and the empirical CDF are plotted.
+            <br>
+            <br>
+            As we can see <b>the empirical CDF</b> (red) <b>converges uniformly to the true CDF</b> (black) as the sample size increases.
+        </div>
+
+        <div class="solution">
+            <h4>Example</h4>
+            <p>If \(\mu\) is the uniform distribution on \([0, 1]\), \(F_\mu(t)=t\) for \(t \in [0, 1]\). Here is a comparison of what the empirical CDF \(F_{{\mu}_n}\) may look like compared to \(F_\mu\) for \(n=10\) and \(n=100\) samples.</p>
+            <div style="text-align: center;">
+                <img style="width: 60%; height: 60%;" src="GC-Example.JPG" alt="example">
+            </div>
         </div>
 
         <h4>Sources</h4>
             <p>[1] https://home.uchicago.edu/~amshaikh/webfiles/glivenko-cantelli.pdf</p>
             <p>[2] https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem</p>
+            <p>[3] https://pillowmath.github.io/Expository%20Notes/VC-Dimension-and-Glivenko-Cantelli-Notes.pdf</p>
 
         <div class="footer">
             <p>&copy; 2023 All rights reserved.</p>
@@ -149,6 +162,3 @@
     </div>
 </body>
 </html>
-
-
-
