@@ -52,9 +52,11 @@
         }
 
         .code_background {
-            background-color: lightcyan;
+            background-color: lightyellow;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         .solution h2 {
@@ -106,7 +108,7 @@
         <h1 style="text-align: center;">Th4: The Glivenko-Cantelli theorem, Proof, Simulations</h1>
 
         <div class="solution">
-            The Glivenko–Cantelli theorem, sometimes referred to as the Fundamental Theorem of Statistics, is a key concept in probability theory. Named after Valery Ivanovich Glivenko and Francesco Paolo Cantelli, it determines the asymptotic behavior of the empirical distribution function as the number of independent and identically distributed observations grows.
+            The Glivenko-Cantelli theorem, sometimes referred to as the Fundamental Theorem of Statistics, is a key concept in probability theory. Named after Valery Ivanovich Glivenko and Francesco Paolo Cantelli, it determines the asymptotic behavior of the empirical distribution function as the number of independent and identically distributed observations grows.
             <br>
             <br>
             <div class="exercise_text">
@@ -115,7 +117,7 @@
             In other words, the difference between the empirical cumulative distribution function and the actual cumulative distribution function goes to zero as the sample size \(n\) tends to infinity.
             <br>
             <br>
-            Here’s a more formal statement of the theorem:
+            Here's a more formal statement of the theorem:
             <br>
             <br>
             Let \(X_1, X_2, ..., X_n\) be independent and identically distributed random variables with a common cumulative distribution function \(F\). The empirical distribution function \(F_n\) for these variables is defined by:
@@ -126,10 +128,10 @@
             almost surely.
             <br>
             <br>
-            In simpler terms, the theorem states that as the sample size nn increases, the empirical distribution function becomes a better and better approximation of the true distribution function, and this convergence happens almost surely for all possible values of xx. The uniform convergence implies that the approximation is good across the entire range of the distribution.
+            In simpler terms, the theorem states that as the sample size \(n\) increases, the empirical distribution function becomes a better and better approximation of the true distribution function, and this convergence happens almost surely for all possible values of \(x\). The uniform convergence implies that the approximation is good across the entire range of the distribution.
             <br>
             <br>
-            The Glivenko-Cantelli theorem has important implications for the field of statistics, particularly in understanding the behavior of sample-based estimators and the convergence of sample statistics to their population counterparts. It provides a theoretical foundation for using empirical distribution functions as estimators of the true underlying distribution in statistical inference. The theorem also plays a key role in establishing the consistency of certain statistical procedures, contributing to the theoretical underpinning of statistical inference.
+            The Glivenko-Cantelli theorem has important implications for the field of statistics, particularly in understanding the behavior of sample-based estimators and the convergence of sample statistics to their population counterparts. <b>It provides a theoretical foundation for using empirical distribution functions as estimators of the true underlying distribution in statistical inference</b>. The theorem also plays a key role in establishing the consistency of certain statistical procedures, contributing to the theoretical underpinning of statistical inference.
             <br>
             <br>
             <div style="text-align: center;">
@@ -141,6 +143,26 @@
             <br>
             <br>
             As we can see <b>the empirical CDF</b> (red) <b>converges uniformly to the true CDF</b> (black) as the sample size increases.
+        </div>
+
+        <div class="code_background">
+            <h3 style="text-align: center;">What is the Cumulative Distribution Function (CDF)?</h3>
+            <p>The cumulative distribution function (CDF) of a random variable is a method to describe the distribution of random variables. The advantage of the CDF is that it can be defined for any kind of random variable (discrete, continuous, and mixed).</p>
+            <div class="math-box">
+                <p><b>Definition</b> The cumulative distribution function (CDF) of a random variable \(X\) is defined as</p>
+                <p>\[F_X (x) = P(X \leq x),\:for\:all\:\:x\:\in\:\mathbb{R}.\]</p>
+            </div>
+            <p>So, it represents the probability that the random variable \(X\) takes on a value less than or equal to \(x\).</p>
+            <p>Graph of the CDF of the <b>uniform distribution</b> on the interval \([0, 1]\):</p>
+            <div style="text-align: center;">
+                <img style="width: 40%; height: 40%;" src="graficoCDFuniforme.png" alt="uniform CDF">
+            </div>
+            <p>
+                The Cumulative Distribution Function (CDF) of a continuous uniform distribution on the interval \([a, b]\) is a piecewise linear function that starts at \(0\) when \(x\) is less than \(a\), increases linearly as \(x\) increases within the interval \([a, b]\), and reaches \(1\) when \(x\) is greater than or equal to \(b\). 
+                Reflecting the fact that the probability of a random variable, assuming values in the inetrval \([a, b]\), being less than \(a\) is 0, and the probability of it being less than \(b\) is 1.
+            </p>
+            <p>Looking at the graph we can see that: when \(x = \frac{b-a}{2}\), which is the middle point of the interval \([a, b]\), the probability is exactly 0.5 because, as the random variable \(X\) is uniformly distributed, we have the same probability that \(X\) takes on values less than \(\frac{b-a}{2}\) or values greater than \(\frac{b-a}{2}\).</p>
+            <p>\[F_X (0.5) = P(X \leq 0.5) = 0.5\]</p>
         </div>
 
         <div class="solution">
