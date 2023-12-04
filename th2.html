@@ -158,6 +158,36 @@
             From the figure above, we can deduce that despite the fact that the original shape of the distribution was uniform, it tends towards a normal distribution as the value of n (sample size) increases.
         </div>
 
+        <div class="solution">
+            <h3 style="text-align: center;">Intuitive Proof</h3>
+
+            <p>The Central Limit Theorem (CLT) is a fundamental concept in probability and statistics, stating that the distribution of the sum (or average) of a large number of independent, identically distributed random variables approaches a normal distribution, regardless of the original distribution of the variables.</p>
+
+            <h4>Intuition:</h4>
+
+            <p>Imagine you have a group of people each rolling a fair six-sided die. The outcome of each roll is a random variable with a uniform distribution between 1 and 6. Now, consider the sum of the numbers rolled by this group of people.</p>
+
+            <h4>Step 1: Individual Random Variables</h4>
+
+            <p>The distribution of a single die roll is uniform, but as you add more and more die rolls together, the distribution of the sum starts to look more like a bell curve.</p>
+
+            <h4>Step 2: Many Independent Random Variables</h4>
+
+            <p>As you increase the number of people rolling dice (or the number of dice rolls per person), you are effectively adding more independent random variables. The Central Limit Theorem assumes that these variables are independent and identically distributed.</p>
+
+            <h4>Step 3: Convergence to Normal Distribution</h4>
+
+            <p>According to the Central Limit Theorem, as the number of people rolling dice increases, the distribution of the sum of the rolls approaches a normal distribution. This happens because of the "smoothing out" effect of many independent random variables, even if each individual variable does not follow a normal distribution.</p>
+
+            <h4>Mathematical Insight:</h4>
+
+            <p>Mathematically, if \(X_1, X_2, ..., X_n\) are independent and identically distributed random variables with a finite mean \(\mu\) and variance \(\sigma^2\), then the sum \(S_n = X_1 + X_2 + ... + X_n\) approaches a normal distribution as \(n\) becomes large, with a mean \(n\mu\) and a variance \(n\sigma^2\). The standardized form of \(S_n\) converges to a standard normal distribution.</p>
+            <p>\[S_n \sim N(n\mu, n \sigma^2) \]</p>
+
+            <p>In the context of our dice example, as you roll more and more dice, the sum of the numbers rolled approaches a normal distribution, and this distribution becomes more symmetric and bell-shaped.</p>
+
+        </div>
+
         <h4>Sources</h4>
             <p>[1] https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php</p>
             <p>[2] https://www.statisticshowto.com/probability-and-statistics/normal-distributions/central-limit-theorem-definition-examples/</p>
@@ -170,6 +200,3 @@
     </div>
 </body>
 </html>
-
-
-
