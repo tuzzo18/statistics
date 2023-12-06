@@ -218,7 +218,7 @@ class MyRndUtilities {
         }
 
         sovrapponiIstogrammi();
-        creaTaccheELegenda();
+        //creaTaccheELegenda();
     }
 
 
@@ -227,8 +227,8 @@ class MyRndUtilities {
         //rettangolo contenitore istogramma
         const rettangoloIstogramma_t = new Rettangolo(My2dUtilities.transformX(timeForHistogram_t, 0, n, rectChart.x, rectChart.width), rectChart.y, 150, rectChart.height);
         const rettangoloIstogramma_n = new Rettangolo(My2dUtilities.transformX(timeForHistogram_n, 0, n, rectChart.x, rectChart.width), rectChart.y, 150, rectChart.height);
-        rettangoloIstogramma_t.disegnaRettangolo(ctx, "rgba(100,100,250,0.5)", 1, [1, 1]);
-        rettangoloIstogramma_n.disegnaRettangolo(ctx, "black", 1, []);
+        //rettangoloIstogramma_t.disegnaRettangolo(ctx, "rgba(100,100,250,0.5)", 1, [1, 1]);
+        //rettangoloIstogramma_n.disegnaRettangolo(ctx, "black", 1, []);
 
         //istogrammi
         MyChartUtilities.verticalHistoFromIntervals(ctx, intervals_t, myVariate_MinView, myVariate_MaxView - myVariate_MinView, rettangoloIstogramma_t, "red", 1, "green");
@@ -278,15 +278,15 @@ class MyRndUtilities {
     function creaTaccheELegenda() {
 
         //rettangolo simulazione
-        rectChart.disegnaRettangolo(ctx, "black", 1, []);
+        //rectChart.disegnaRettangolo(ctx, "black", 1, []);
 
         //label riferimenti numerici range, media, sigma della variata
         ctx.font = "11px Verdana";
         ctx.fillStyle = "black";
-        ctx.fillText(myVariate_MaxView.toFixed(1), rectChart.right() + 10, rectChart.y - 7);
-        ctx.fillText(myVariate_MinView.toFixed(1), rectChart.right() + 10, rectChart.bottom() - 7);
+        //ctx.fillText(myVariate_MaxView.toFixed(1), rectChart.right() + 10, rectChart.y - 7);
+        //ctx.fillText(myVariate_MinView.toFixed(1), rectChart.right() + 10, rectChart.bottom() - 7);
         ctx.fillStyle = "black";
-        ctx.fillText("paths: " + currentPathNumber + "  avg = " + avgAtLastTime.toFixed(2) + "  var = " + (ssAtLastTime / numberOfSamplePaths).toFixed(2), rectChart.x + 350, rectChart.bottom() + 30);
+        //ctx.fillText("paths: " + currentPathNumber + "  avg = " + avgAtLastTime.toFixed(2) + "  var = " + (ssAtLastTime / numberOfSamplePaths).toFixed(2), rectChart.x + 350, rectChart.bottom() + 30);
         ctx.fillStyle = "black";
         //ctx.fillText(myProcessValueDescription, rectChart.x + 100, rectChart.y + 15);
 
@@ -301,7 +301,7 @@ class MyRndUtilities {
                 let ascissa_t = My2dUtilities.transformX(t, 0, 1, rectChart.x, rectChart.width);
                 ctx.moveTo(ascissa_t, rectChart.bottom() - 3);
                 ctx.lineTo(ascissa_t, rectChart.bottom() + 3);
-                ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
+                //ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
             }
 
         } else {
@@ -313,7 +313,7 @@ class MyRndUtilities {
                 let ascissa_t = My2dUtilities.transformX(t, 0, n, rectChart.x, rectChart.width);
                 ctx.moveTo(ascissa_t, rectChart.bottom() - 3);
                 ctx.lineTo(ascissa_t, rectChart.bottom() + 3);
-                ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
+                //ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
             }
         }
         ctx.stroke();
