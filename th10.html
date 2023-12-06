@@ -106,27 +106,45 @@
         <h1 style="text-align: center;">Th10: The Wiener process and the GBM, Derivations and simulations</h1>
 
         <div class="solution">
-            The Wiener process and the Geometric Brownian Motion (GBM) are mathematical models commonly used in the fields of finance and physics to describe random movements.
-            <h3>Wiener process</h3>
-            The Wiener process, also known as Brownian motion, is a continuous-time stochastic process named after mathematician Norbert Wiener.
-            It is characterized by the property that the increment in any time interval is normally distributed.
+            The Wiener process and the Geometric Brownian Motion (GBM) are mathematical models commonly used in various fields including physics, finance, biology and engineering to describe random movements: the movement of particles, the fluctuation of stock prices or the diffusion of substances in a fluid.
+            <h3 style="text-align: center;">Wiener process</h3>
+            The Wiener process, also known as Brownian motion, is a mathematical model that describes a continuous-time stochastic process. It is named after the mathematician Norbert Wiener and the botanist Robert Brown, who independently discovered the phenomenon in the early 20th century.
+            It is <b>characterized by the property that the increment in any time interval is normally distributed</b>.
             The process is often used to model the random movements of particles in fluid or the stock prices in financial markets.
-            <h4>Key features</h4>
+            <h4>Key properties</h4>
             <ul>
-                <li><b>Continuous Paths</b>: The Wiener process has continuous sample paths, meaning the path is continuous as a function of time.</li>
-                <li><b>Stationary Increments</b>: Increments of the process over non-overlapping time intervals are statistically independent and have the same distribution.</li>
-                <li><b>Gaussian Increments</b>: The increment in a small time interval is normally distributed.</li>
+                <li><b>Continuous Paths</b>: A Wiener process is a continuous function of time. This means that the path of the process does not have any jumps, and it is continuous over every interval of time.</li>
+                <br>
+                <li><b>Independent Increments</b>: The increments of the Wiener process over disjoint time intervals are independent of each other.</li>
+                <br>
+                <li><b>Gaussian Increments</b>: The increments of a Wiener process over a time interval are normally distributed (Gaussian). This means that the change in the process over a given time interval follows a normal distribution.</li>
+                <p>In other words, if you look at the difference in the process values at two different points in time, that difference will be a random variable that follows a normal distribution.</p>
+                <p>This means that the increments of a Wiener process are symmetrically distributed around their mean, and the distribution is bell-shaped (bell curve or Gaussian distribution). </p>
+                <li><b>Stationary Increments</b>: The statistical properties of the process remain the same over time. In other words, the distribution of increments is constant across different time intervals.</li>
+                <br>
+                Moreover:
+                <li><b>Zero Mean</b>: The process starts at zero at time zero, and its expected value at any time is also zero.</li>
             </ul>
 
             The Wiener process is often denoted by \(W(t)\), where \(t\) is time.
-            The increments \(W(t_2) - W(t_1)\) are normally distributed with mean zero and variance \(t_2 - t_1\)​.
-            <h3>Geometric Brownian Motion (GBM)</h3>
-            GBM is a continuous-time stochastic process that generalizes the Wiener process by introducing a drift and a volatility parameter.
+            The increments \(W(t_2) - W(t_1)\) are normally distributed with mean zero and variance \(t_2 - t_1\).
+
+            <p>Wiener processes play a crucial role in the development of stochastic calculus and are fundamental in the study of stochastic differential equations.</p>
+
+            <div style="text-align: center;">
+                <img style="width: 50%; height: 50%;" src="Wiener-process-5traces.svg" alt="Wiener">
+                <p>Five sampled processes, with expected standard deviation in gray.</p>
+            </div>
+        </div>
+
+        <div class="solution">
+            <h3 style="text-align: center;">Geometric Brownian Motion (GBM)</h3>
+            GBM is a continuous-time stochastic process that <u>generalizes the Wiener process by introducing a drift and a volatility parameter</u>.
             It is widely used to model the dynamics of stock prices and other processes in financial markets.
             <h4>Key features</h4>
             <ul>
-                <li><b>Drift Term</b>: GBM incorporates a drift term, representing the average rate of return of the process.</li>
-                <li><b>Volatility Term</b>: It includes a volatility term, representing the random fluctuations around the average rate of return.</li>
+                <li><b>Drift term</b>: GBM incorporates a drift term, representing <u>the average rate of return of the process</u>.</li>
+                <li><b>Volatility term</b>: It includes a volatility term, representing <u>the random fluctuations around the average rate of return</u>.</li>
             </ul>
             The equation for GBM is often expressed as
             \[dS(t) = \mu S(t)dt + \sigma S(t)dW(t)\]
@@ -153,6 +171,3 @@
     </div>
 </body>
 </html>
-
-
-
