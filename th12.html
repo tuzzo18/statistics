@@ -107,32 +107,47 @@
 
         <div class="solution">
             Ito integration and calculus are fundamental concepts in stochastic calculus, a branch of mathematics that deals with the analysis of stochastic processes.
-            Stochastic calculus is an extension of traditional calculus that was developed as the standard tools of calculus were inadequate for dealing with random variables and processes.
+            <b>Stochastic calculus is an extension of traditional calculus that was developed as the standard tools of calculus were inadequate for dealing with random variables and processes</b>.
             <br>
             <br>
-            <b>Itô calculus</b>, named after the Japanese mathematician Kiyosi Itô, extends the methods of calculus to stochastic processes such as Brownian motion. The central concept is the Itô stochastic integral, a stochastic generalization of the Riemann-Stieltjes integral in analysis.
+            <b>Itô calculus</b>, named after the Japanese mathematician Kiyosi Itô, is a branch of mathematics that <b>extends the methods of traditional calculus to handle stochastic processes</b> such as Brownian motion. The central concept is the Itô stochastic integral, a stochastic generalization of the Riemann-Stieltjes integral in analysis.
             <br>
             <br>
             <div class="exercise_text">
-                The Ito integral is a mathematical tool used to define the integral of a stochastic process with respect to a Brownian motion.
+                The <b>Ito integral</b> is a mathematical tool used to define the integral of a stochastic process with respect to a Brownian motion.
                 Unlike the traditional Riemann-Stieltjes integral, the Ito integral takes into account the stochastic nature of the integrator (Brownian motion).
             </div>
-            A stochastic process \(X(t)\) is often represented as a collection of random variables indexed by time \(t\).
-            The Ito integral of a function \(f(t, X(t))\) with respect to a Brownian motion \(W(t)\) is denoted as:
-            \[\int_0^t f(s, X(s)) dW(s)\]
-            Important results of Itô calculus include the integration by parts formula and Itô's lemma, which is a change of variables formula. These differ from the formulas of standard calculus, due to quadratic variation terms.
-            <h4>Ito's Lemma</h4>
-            Ito's Lemma is a fundamental result in stochastic calculus. It provides a formula for differentiating a function of a stochastic process.
-            <br>
-            The lemma is a stochastic analog of the chain rule in classical calculus and is crucial for analyzing the dynamics of stochastic processes.
-            <br>
-            <br>
+            The core of Itô calculus is the Itô stochastic integral. The integrands and the integrators are now stochastic processes:
+            \[Y_t = \int_{0}^{t} H_s\:dX_s\]
+            <p>The process \(Y\) above defined is itself a stochastic process with time parameter \(t\). Concretely, the integral from 0 to any particular t is a random variable, defined as a limit of a certain sequence of random variables.</p>
+            Important results of Itô calculus include the integration by parts formula and Itô's lemma.. These differ from the formulas of standard calculus, due to quadratic variation terms.
+            <h3 style="text-align: center;">Ito's Lemma</h3>
+            <b>Ito's Lemma</b> is a fundamental result in stochastic calculus: it <b>provides a formula for differentiating a function of a stochastic process</b>.
+            The lemma is the <u>equivalent to the chain rule in classical calculus</u> and is crucial for analyzing the dynamics of stochastic processes.
+            
+            <p>
+                <ul>
+                    <li><b>Chain rule</b> (classical calculus): helps to differentiate composite functions.</li>
+                </ul>
+                \[ \frac{d}{dx} [ f ( g ( x ) ) ]  = f^{'}(g(x)) \cdot g^{'}(x) \]
+            </p>
+
+            <p>
+                <ul>
+                    <li><b>Ito's Lemma</b>: provides a formula to find the differential of a function of a stochastic process.</li>
+                </ul>
+                \[ d(f(t, X(t))) = \frac{\partial f}{\partial t} dt + f^{'} dX(t) + \frac{1}{2} f^{''} dX(t)^2 \]
+                The last term captures the stochastic nature of the process and it is related to the quadratic variation of the stochastic process.
+            </p>
+
+
             In summary, Ito integration and calculus provide essential tools for analyzing and modeling systems subject to randomness. These concepts have widespread applications, particularly in finance, where they are crucial for pricing derivatives and managing risk.
         </div>
 
         <h4>Sources</h4>
             <p>[1] https://en.wikipedia.org/wiki/It%C3%B4_calculus</p>
-            <p>[2] https://math.nyu.edu/~goodman/teaching/DerivSec10/notes/week6.pdf</p>
+            <p>[2] https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma</p>
+            <p>[3] https://math.nyu.edu/~goodman/teaching/DerivSec10/notes/week6.pdf</p>
 
         <div class="footer">
             <p>&copy; 2023 All rights reserved.</p>
@@ -140,6 +155,3 @@
     </div>
 </body>
 </html>
-
-
-
