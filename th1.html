@@ -52,9 +52,11 @@
         }
 
         .code_background {
-            background-color: lightcyan;
+            background-color: lightyellow;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         .solution h2 {
@@ -177,6 +179,26 @@
             </div>
             <br>
             The illustration shows that as the number of rolls in this run increases, the average of the values of all the results approaches 3.5. Although each run would show a distinctive shape over a small number of throws (at the left), over a large number of rolls (to the right) the shapes would be extremely similar.
+
+            <h4>JavaScript code:</h4>
+            <div class="code_background">
+                <pre>
+                    <code>
+const num_of_rolls = 1000;
+
+let sum = 0;
+for (let i = 0; i < num_of_rolls; i++) {
+    // returns a random integer from 1 to 6
+    const value = Math.floor(Math.random() * 6) + 1;
+    sum += value;
+}
+
+const average = sum / num_of_rolls;
+console.log(average);
+                    </code>
+                </pre>
+
+            </div>
         </div>
 
         <h4>Sources</h4>
