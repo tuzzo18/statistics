@@ -197,8 +197,29 @@ const average = sum / num_of_rolls;
 console.log(average);
                     </code>
                 </pre>
-
             </div>
+            <label><b>Number of trials</b>:</label>
+                <input type="number" id="numOfTrials" value="60" min="6" size="8">
+                <button onclick="rollDice()">Roll dice</button>
+                <p id="outputParagraph"></p>
+
+                <script>
+                    function rollDice() {
+                        const number_of_rolls = parseInt(document.getElementById('numOfTrials').value);
+
+                        let sum = 0;
+                        for (let i = 0; i < number_of_rolls; i++) {
+                            // returns a random integer from 1 to 6
+                            const value = Math.floor(Math.random() * 6) + 1;
+                            sum += value;
+                        }
+
+                        const average = sum / number_of_rolls;
+                        
+                        var outputParagraph = document.getElementById('outputParagraph');
+                        outputParagraph.textContent = 'Observed average: ' + average;
+                    }
+                </script>
         </div>
 
         <h4>Sources</h4>
