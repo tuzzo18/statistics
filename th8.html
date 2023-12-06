@@ -52,9 +52,11 @@
         }
 
         .code_background {
-            background-color: lightcyan;
+            background-color: lightyellow;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         .solution h2 {
@@ -107,40 +109,73 @@
 
         <div class="solution">
 
-            <h3>Stochastic processes</h3>
+            <h3 style="text-align: center;">Stochastic processes</h3>
 
-            Stochastic processes are mathematical models that describe the evolution of random variables over time. They are widely used in various fields, including finance, physics, biology, and engineering, to model systems with inherent randomness.
-            <br>
-            <br>
-            A <b>stochastic process</b> is a mathematical object that is a sequence of random variables indexed by some set. It describes some phenomenon that evolves over time and involves a random component. The observed value at each time is a random variable, and each random variable in the collection of the values is taken from the same mathematical space, known as the state space.
-            <br>
-            <br>
+            <b>Stochastic processes are mathematical models that describe the evolution of random variables over time</b>. They are widely used in various fields, including finance, physics, biology, and engineering, to model systems with inherent randomness.
+            <p>In statistics, a stochastic process (or random process) is a mathematical model that describes the evolution of a system over time where the outcomes are subject to random variations. It is a collection of random variables indexed by time (or another parameter), and each random variable represents the state of the system at a particular point in time.</p>
             <div class="exercise_text">
-                Intuitively, a stochastic process describes some phenomenon that evolves over time (a process) and that involves a random (a stochastic) component. Empirically, we observe such a process by recording values of an appropriate response variable (that takes values varying randomly in some way over time) at various points in time.
+                Intuitively, a <b>stochastic process</b> describes some phenomenon that evolves over time (a process) and that involves a random (a stochastic) component. Empirically, we observe such a process by recording values of an appropriate response variable (that takes values varying randomly in some way over time) at various points in time.
             </div>
-            <br>
-            A stochastic process can be classified in two types:
+            <p>Formally, a stochastic process is defined as a collection of random variables:</p>
+            <p>\[\{X_t : t \in T\}\]</p>
+            <p>where \(T\) is the index set (often representing time), each \(X_t\) is a random variable and the collection \(\{X_t\}\) represents the entire stochastic process.</p>
+
+            There are various types of stochastic processes, and they can be classified based on different characteristics. Here are two types:
             <ul>
-                <li><b>Discrete-Time</b> Processes: Random variables defined at discrete time points.</li>
-                <li><b>Continuous-Time</b> Processes: Random variables defined over a continuous time domain.</li>
+                <li><b>Discrete-Time</b> Stochastic Process: random variables defined at discrete time points.</li>
+                The index set \(T\) is discrete, often representing time points as integers.
+                <br>
+                Example: A sequence of random variables \(\{X_0, X_1, X_2, ...\}\).
+                <br>
+                <br>
+                <li><b>Continuous-Time</b> Stochastic Process: random variables defined over a continuous time domain.</li>
+                The index set \(T\) is continuous, often representing time as a real number.
+                <br>
+                Example: Brownian motion (Wiener process) is a continuous-time stochastic process.
             </ul>
 
-            Examples of stochastic processes are: Brownian motion, Random Walk, Wiener Process, Poisson process, Markov processes.
-
-            <h3>Stochastic Differential Equations (SDEs)</h3>
+            <p>Stochastic processes are widely used in statistics and probability theory <b>to model and analyze random phenomena</b>, such as stock prices, weather patterns, and biological systems. They provide a flexible framework for capturing and understanding the inherent uncertainty and variability in real-world processes.</p>
+        </div>
+        
+        <div class="solution">
+            <h3 style="text-align: center;">Stochastic Differential Equations (SDEs)</h3>
 
             <b>Stochastic Differential Equations</b> (SDEs) provide a powerful framework for studying the continuous-time dynamics of stochastic processes.
-            <br>
-            <br>
-            A stochastic differential equation (SDE) is a differential equation in which one or more of the terms is a stochastic process, resulting in a solution which is also a stochastic process.
             <br>
             <br>
             The mathematical theory of stochastic differential equations was developed in the 1940s through the groundbreaking work of Japanese mathematician Kiyosi Itô, who introduced the concept of stochastic integral and initiated the study of nonlinear stochastic differential equations.
             <br>
             <br>
-            SDEs have many applications throughout pure mathematics and are used to model various behaviors of stochastic models such as stock prices, random growth models, or physical systems that are subjected to thermal fluctuations.
-            <br>
-            <br>
+            <div class="code_background">
+                <p><b>Stochastic Differential Equations</b> (SDEs) are a type of differential equation that incorporates randomness into the evolution of a system over time. The general form of a one-dimensional SDE is given by:</p>
+                <p>\[dX_t = a(t, X_t)dt + b(t, X_t)dW_t\]</p>
+                <p>Here:</p>
+                <ul>
+                    <li>\(X_t\) is the state of the system at time \(t\)</li>
+                    <li>\(a(t, X_t)\)  is the <b>drift</b> term, representing the deterministic (non-stochastic) part of the change in the system, which determines the average behavior or trend of the system.</li>
+                    <li>\(b(t, X_t)\) is the <b>diffusion</b> term, representing the stochastic part of the change in the system, which captures the impact of random fluctuations on the system.</li>
+                    <li>\(dW_t\) is the differential of a Wiener process (Brownian motion), which represents the random noise in the system.</li>
+                </ul>
+                <p>The term \(a(t, X_t)dt\) describes the <b>deterministic part</b> of the change in the system, and \(b(t, X_t)dW_t\) represents the <b>stochastic part</b> due to random fluctuations.</p>
+            </div>
+            <p>
+                <u>Example</u>:
+                <br>
+                In a financial context, the drift term could represent the expected return or the average growth rate of an asset's value. The diffusion term might represent the volatility of stock prices, capturing the unpredictable movements around the average trend.
+            </p>
+            <p>
+                SDEs are particularly useful for modeling systems where uncertainty or randomness is inherent, and they provide a more realistic representation of many real-world phenomena. For example, SDEs are used to model: 
+                <br>
+                - the evolution of stock prices (in finance)
+                <br>
+                - random growth models
+                <br>
+                - physical systems that are subjected to thermal fluctuations
+                <br>
+                - the movement of particles suspended in a fluid (in biology)
+            </p>
+
+            <p>In statistical applications, SDEs are particularly useful when modeling time series data where both systematic trends and random noise play a role. For example, in finance, SDEs are commonly used to model the dynamics of asset prices. The famous Black-Scholes-Merton model, which is used to price financial options, involves a stochastic differential equation.</p>
             Here's an overview of some significant SDEs:
             <ul>
                 <li><b>Arithmetic Brownian Motion (ABM)</b></li>
@@ -169,15 +204,17 @@
                 \(dW_t\): Wiener process or Brownian motion increment, representing the random jumps.
                 <br>
                 <br>
-                In this SDE, the term \(\lambda dt\) represents the deterministic part, accounting for the regular occurrence of jumps, and \(dW_t\) represents the stochastic part, capturing the randomness associated with the timing of the jumps.
+                In this SDE, the term \(\lambda dt\) represents the <b>deterministic part</b>, accounting for the regular occurrence of jumps, and \(dW_t\) represents the <b>stochastic part</b>, capturing the randomness associated with the timing of the jumps.
             </ul>
 
 
             <h4>Numerical solutions for SDEs</h4>
-            Numerical methods for solving stochastic differential equations include the Euler–Maruyama method, Milstein method, Runge–Kutta method, Rosenbrock method, and methods based on different representations of iterated stochastic integrals.
+            <p>Solving SDEs analytically is often challenging, and numerical methods, such as Euler's method or more sophisticated techniques like the Itô calculus, are frequently employed for simulations.</p>
+
+            Numerical methods for solving stochastic differential equations include the Euler–Maruyama method, Milstein method, Runge–Kutta method, Rosenbrock method and methods based on different representations of iterated stochastic integrals.
             <br>
             <br>
-            Stochastic processes and SDEs are powerful tools for modeling systems subject to uncertainty and randomness. Their applications span various disciplines, and ongoing research continues to enhance our understanding of their theoretical foundations and practical implications. As technological advances enable the handling of increasingly complex systems, stochastic processes and SDEs will play a crucial role in shaping the future of mathematical modeling and analysis.
+            Stochastic processes and SDEs are powerful tools for modeling systems subject to uncertainty and randomness. Their applications span various disciplines, and ongoing research continues to enhance our understanding of their theoretical foundations and practical implications.
         </div>
 
         
@@ -192,6 +229,3 @@
     </div>
 </body>
 </html>
-
-
-
