@@ -161,7 +161,7 @@
             <p>
                 <u>Example</u>:
                 <br>
-                In a financial context, the drift term could represent the expected return or the average growth rate of an asset's value. The diffusion term might represent the volatility of stock prices, capturing the unpredictable movements around the average trend.
+                In a financial context, the drift term could represent the expected return or the <u>average growth rate</u> of an asset's value. The diffusion term might represent the volatility of stock prices, capturing the unpredictable movements around the average trend.
             </p>
             <p>
                 SDEs are particularly useful for modeling systems where uncertainty or randomness is inherent, and they provide a more realistic representation of many real-world phenomena. For example, SDEs are used to model: 
@@ -181,17 +181,17 @@
                 <li><b>Arithmetic Brownian Motion (ABM)</b></li>
                 \[dX_t = \mu dt + \sigma dW_t\]
                 The process models linear changes, making it suitable for scenarios where the variable of interest evolves in an additive manner. The drift term \(\mu\) represents the average rate of change over time. The volatility term \(\sigma\) represents the random fluctuations or variability around the average.
-                Arithmetic Brownian Motion provides a versatile tool for modeling and understanding the dynamics of various processes that exhibit linear changes and random fluctuations.
+                Arithmetic Brownian Motion provides a versatile tool for <u>modeling</u> and understanding <u>the dynamics of various processes that exhibit linear changes and random fluctuations</u>.
                 <br>
                 <br>
                 <li><b>Geometric Brownian Motion (GBM)</b></li>
                 \[dX_t = \mu X_t dt + \sigma X_t dW_t\]
-                GBM is fundamental in financial modeling, especially for modeling stock prices in the Black-Scholes-Merton option pricing model. The parameter \(\mu\) represents the drift (average growth rate), \(\sigma\) is the volatility (diffusion), and \(W_t\) is a Wiener process (Brownian motion).
+                GBM is fundamental in financial modeling, especially for <u>modeling stock prices</u> in the Black-Scholes-Merton option pricing model. The parameter \(\mu\) represents the drift (average growth rate), \(\sigma\) is the volatility (diffusion), and \(W_t\) is a Wiener process (Brownian motion).
                 <br>
                 <br>
                 <li><b>Ornstein-Uhlenbeck Process</b></li>
                 \[dX_t = \theta(\mu - X_t)dt + \sigma dW_t\]
-                This process is widely used in physics and finance to model mean-reverting behavior. It describes a particle undergoing random motion while being pulled towards a central point (\(\mu\)) with a speed proportional to the distance.
+                This process is widely used in physics and finance to <u>model mean-reverting behavior</u>. It describes a particle undergoing random motion while being pulled towards a central point (\(\mu\)) with a speed proportional to the distance.
                 <br>
                 <br>
                 <li><b>Poisson Process</b></li>
